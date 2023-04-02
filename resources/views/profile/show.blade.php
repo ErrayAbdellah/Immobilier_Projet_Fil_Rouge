@@ -1,4 +1,17 @@
-<x-app-layout>
+
+@extends('admin.layout.master')
+
+@section('title')
+    Edite Profile
+@endsection
+
+@section('content')
+    
+    
+    <x-app-layout>
+{{-- @extends('/admin.layout.header') --}}
+
+{{-- @include('/admin/layout/navbar') --}}
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Profile') }}
@@ -14,7 +27,7 @@
             @endif
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
-                <div class="mt-10 sm:mt-0">
+            <div class="mt-10 sm:mt-0">
                     @livewire('profile.update-password-form')
                 </div>
 
@@ -42,4 +55,8 @@
             @endif
         </div>
     </div>
+@extends('/admin.layout.footer')
+
 </x-app-layout>
+
+@endsection

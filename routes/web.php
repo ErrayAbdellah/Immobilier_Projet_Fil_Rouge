@@ -26,3 +26,13 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+
+Route::group([
+    'prefix' => 'admin',
+],function(){
+    Route::get('/users', function () { return view('admin.users'); })->name('users');
+    Route::get('/dashboard', function () { return view('admin.dashboard'); })->name('dashboard');
+
+});
