@@ -10,8 +10,8 @@
           </svg>
         </button>
         <a href="{{route('dashboard')}}" class="flex ml-2 md:mr-24">
-          <img src="{{asset('images.logo.admin-roles.png ')}}" class="h-8 mr-3" alt="FlowBite Logo" />
-          <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Flowbite</span>
+          <img src="{{asset('images/logo/admin-roles.png ')}}" class="h-8 mr-3" alt="FlowBite Logo" />
+          <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Dashboard</span>
         </a>
         </div>
         <div class="flex items-center">
