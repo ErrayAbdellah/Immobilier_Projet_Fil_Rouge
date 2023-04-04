@@ -10,3 +10,8 @@
         hi Dashboard
 </div>
 @endsection
+
+
+@section('script')
+    
+@endsection
