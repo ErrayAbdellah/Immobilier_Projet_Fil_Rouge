@@ -36,3 +36,5 @@ Route::group([
     Route::get('/dashboard', function () { return view('admin.dashboard'); })->name('dashboard');
 
 });
+
+Route::get('/home', function () { return view('Home.index'); })->name('Home');
