@@ -61,7 +61,9 @@
 
 <div class="sm:ml-64" >
     <div class="rounded-lg">
-        @yield('content')
+        <div class="pt-20 ps-4 min-h-screen bg-gray-100 decoration-gray-200 text-gray-900 rounded-lg ">
+            @yield('content')
+        </div>
     </div>
     </div>
 

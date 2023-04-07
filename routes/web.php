@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ReplyController;
+use App\Notifications\ReplyAdded;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,14 +24,18 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('admin.dashboard');
+    // })->name('dashboard');
+
 });
 
 
 
 Route::group([
+     'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
     'prefix' => 'admin',
 ],function(){
     Route::get('/users', function () { return view('admin.users'); })->name('users');
@@ -38,3 +44,6 @@ Route::group([
 });
 
 Route::get('/home', function () { return view('Home.index'); })->name('Home');
+
+
+Route::get('/reply', [ReplyController::class,'index']);

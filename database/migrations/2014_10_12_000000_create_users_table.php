@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->date('dateBirthday');
-            $table->string('phone');
-            $table->string('city');
+            $table->date('dateBirthday')->default('2000-03-03');
+            $table->string('phone')->default('');
+            $table->string('city')->default('');
             $table->string('email')->unique();
-            $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
+            $table->foreignId('role_id')->default(1)->constrained('roles')->onDelete('cascade');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
