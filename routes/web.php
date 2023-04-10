@@ -24,9 +24,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return view('admin.dashboard');
-    // })->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+        // return redirect('dashboard');
+    });
+   
 
 });
 
@@ -43,7 +45,7 @@ Route::group([
 
 });
 
-Route::get('/home', function () { return view('Home.index'); })->name('Home');
+Route::get('/home', function () { return view('Home.home'); })->name('Home');
 
 
 Route::get('/reply', [ReplyController::class,'index']);
