@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\ReplyController;
+// use App\Http\Controllers\ReplyController;
 use App\Notifications\ReplyAdded;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +51,11 @@ Route::get('/home', function () { return view('Home.home'); })->name('Home');
 
 
 Route::get('/reply', [ReplyController::class,'index']);
+
+
+
+
+// test *****************************************
+
+
+Route::resource('post',PostController::class);
