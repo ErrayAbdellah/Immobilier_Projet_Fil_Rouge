@@ -132,8 +132,17 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post = Post::find($id); // Find the post by its ID
+
+        if (!$post) {
+            return response()->json(['error' => 'Post not found'], 404); // Return an error response if the post is not found
+        }
+
+        // Delete the post
+        $post->delete();
+
+        return response()->json(['message' => 'Post deleted successfully']); // Return a success response
     }
 }

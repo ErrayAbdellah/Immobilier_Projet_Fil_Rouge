@@ -33,8 +33,17 @@
                 <label for="outdoor_feature_{{ $outdoorFeature->id }}">{{ $outdoorFeature->name }}</label><br>
             @endforeach
         </div>
+        {{-- <input type="hidden" name="post_id" value="{{ $post->id }}"> --}}
         <button type="submit">Update Post</button>
     </form>
-    
+    <br>
+    <br>
+    <br>
+    <form action="{{ route('post.destroy', $post->id) }}" method="post">
+        @csrf
+        @method('DELETE')
+        <input type="text" name="post_id" value="{{ $post->id }}">
+        <button type="submit">Delete</button>
+    </form>
 </body>
 </html>
