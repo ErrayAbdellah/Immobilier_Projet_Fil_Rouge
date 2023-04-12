@@ -82,9 +82,14 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        // dd($id);
+        $post = Post::find($id); // Find the post by its ID
+        $types = Type::all(); // Fetch all types
+        $outdoorFeatures = OutdoorFeature::all(); // Fetch all outdoor features
+
+        return view('update-poste', compact('post', 'types', 'outdoorFeatures'));
     }
 
     /**
@@ -94,9 +99,31 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request,$id)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'post_type' => 'required',
+            'outdoor_features' => 'array', // Assuming outdoor_features is an array of checkbox values
+        ]);
+    
+        $post = Post::find($id); // Find the post by its ID
+    
+        if (!$post) {
+            return redirect()->back()->with('error', 'Post not found'); // Return an error if the post is not found
+        }
+    
+        // Update the post attributes
+        $post->title = $validatedData['title'];
+        $post->description = $validatedData['description'];
+        $post->type_id = $validatedData['post_type'];
+        $post->save();
+    
+        // Sync the outdoor features
+        $post->outdoorfeature()->sync($validatedData['outdoor_features']);
+    
+        return redirect()->route('post.edit', $id)->with('success', 'Post updated successfully!'); // Redirect to edit page with success message
     }
 
     /**
