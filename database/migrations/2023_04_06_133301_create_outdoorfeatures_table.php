@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('outdoorfeatures', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            // $table->foreignId('post_id')->constrained('posts')->onDelete('cascade');
             $table->timestamps();
         });
     }

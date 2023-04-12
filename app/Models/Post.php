@@ -12,8 +12,8 @@ class Post extends Model
         'title',
         'description',
         'user_id',
-        'category_id',
-        'outdoorFeature_id',
+        // 'category_id',
+        // 'outdoorFeature_id',
         'type_id',
     ];
 
@@ -28,7 +28,7 @@ class Post extends Model
     // }
     public function outdoorfeature()
     {
-        return $this->belongsToMany(Outdoorfeature::class, 'house_outdoorfeature', 'post_id', 'outdoorfeature_id');
+        return $this->belongsToMany(Outdoorfeature::class, 'post_outdoorfeature', 'post_id', 'outdoorfeature_id');
     }
     public function image(){
         return $this->belongsTo(Image::class);

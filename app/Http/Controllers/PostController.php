@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Outdoorfeature;
 use App\Models\Post;
 use App\Models\Type;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -39,12 +41,29 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     //
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|',
+            'description' => 'required',
+            'post_type' => 'required',
+            'outdoor_features' => 'array', // Assuming outdoor_features is an array of checkbox values
+        ]);
+
+        $post = new Post();
+        
+        $post->title = $validatedData['title'];
+        $post->description = $validatedData['description'];
+        $post->type_id = $validatedData['post_type'];
+        $post->user_id =1;
+        $post->save();
+        
+        $post->outdoorfeature()->sync($validatedData['outdoor_features']);
         
 
-    // }
+        return redirect()->route('post.create')->with('success', 'Post created successfully!');
+        
+    }
 
     /**
      * Display the specified resource.
@@ -56,20 +75,6 @@ class PostController extends Controller
     {
         //
     }
-    public function store(Request $request)
-{
-    // Validate the form data
-    $validatedData = $request->validate([
-        'title' => 'required|max:255',
-        'description' => 'required',
-        'type' => 'required',
-    ]);
-
-
-    // Redirect to a success page
-    return redirect()->route('post.index')->with('success', 'Post created successfully!');
-}
-
 
     /**
      * Show the form for editing the specified resource.

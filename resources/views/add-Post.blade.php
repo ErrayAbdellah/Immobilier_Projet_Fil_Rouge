@@ -10,17 +10,18 @@
 <body class="flex justify-center">
     
     <form method="post" action="{{ route('post.store') }}">
+        @csrf 
         <div>
             <label for="title">title </label><br>
             <input type="text" name="title">
         </div>
         <div>
             <label for="description">description</label><br>
-            <input type="text" class="description">
+            <input type="text" name="description">
         </div>
         <div>
-            <label for="type">type</label><br>
-            <select name="outdoor_features[]" id="outdoor_features">
+            <label for="post_type">type</label><br>
+            <select name="post_type" id="post_type">
                 @foreach($types as $type)
                     <option value="{{ $type->id }}">{{ $type->name }}</option>
                 @endforeach
@@ -31,7 +32,7 @@
             <label for="type">chose </label><br>
 
             @foreach($outdoorFeatures as $outdoorFeature)
-                <input type="checkbox" name="outdoor_features[]" value="{{ $outdoorFeature->id }}" id="outdoor_feature_{{ $outdoorFeature->id }}" >
+                <input type="checkbox" name="outdoor_features[]" value="{{ $outdoorFeature->id }}" id="outdoor_feature_{{ $outdoorFeature->id }}">
                 <label for="outdoor_feature_{{ $outdoorFeature->id }}">{{ $outdoorFeature->name }}</label><br>
             @endforeach
         </div>
