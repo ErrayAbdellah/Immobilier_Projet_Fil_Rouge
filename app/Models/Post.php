@@ -14,6 +14,9 @@ class Post extends Model
         'user_id',
         // 'category_id',
         // 'outdoorFeature_id',
+        'Bedrooms',
+        'space' ,
+        'price' ,
         'type_id',
     ];
 

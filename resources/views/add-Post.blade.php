@@ -9,8 +9,37 @@
 </head>
 <body class="flex justify-center">
     
-    <form method="post" action="{{ route('post.store') }}">
+    <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
         @csrf 
+        {{-- ******************************************************** --}}
+        <h1>Images</h1>
+
+            {{-- @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif --}}
+
+            {{-- <form action="{{ route('images.store') }}" method="post" enctype="multipart/form-data">
+                @csrf --}}
+                <input type="file" name="images[]" multiple>
+                {{-- <button type="submit">Upload</button> --}}
+            {{-- </form> --}}
+
+            <hr>
+
+            <h2>Image Gallery</h2>
+
+            {{-- @if($images->count() > 0)
+                <div class="row">
+                    @foreach($images as $image)
+                        <div class="col-md-3">
+                            <img src="{{ asset($image->path) }}" alt="{{ $image->filename }}" class="img-thumbnail">
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p>No images found.</p>
+            @endif --}}
+        {{-- ******************************************************** --}}
         <div>
             <label for="title">title </label><br>
             <input type="text" name="title">
@@ -18,6 +47,18 @@
         <div>
             <label for="description">description</label><br>
             <input type="text" name="description">
+        </div>
+        <div>
+            <label for="price">price</label><br>
+            <input type="number" name="price">
+        </div>
+        <div>
+            <label for="Bedrooms">Bedrooms</label><br>
+            <input type="number" name="Bedrooms">
+        </div>
+        <div>
+            <label for="space">space</label><br>
+            <input type="number" name="space">
         </div>
         <div>
             <label for="post_type">type</label><br>

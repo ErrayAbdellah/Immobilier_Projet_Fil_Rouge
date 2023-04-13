@@ -23,9 +23,6 @@ class TypeSeeder extends Seeder
                 'name' => 'Apartment & Unit',
             ],
             [
-                'name' => 'Townhouse',
-            ],
-            [
                 'name' => 'Villa',
             ],
             [
@@ -35,13 +32,7 @@ class TypeSeeder extends Seeder
                 'name' => 'Acreage',
             ],
             [
-                'name' => 'Rural',
-            ],
-            [
                 'name' => 'Block Of Units',
-            ],
-            [
-                'name' => 'Retirement Living',
             ],
         ]
     );

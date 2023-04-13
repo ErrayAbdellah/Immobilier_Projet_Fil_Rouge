@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Outdoorfeature;
 use App\Models\Post;
 use App\Models\Type;
@@ -47,13 +48,19 @@ class PostController extends Controller
             'title' => 'required|',
             'description' => 'required',
             'post_type' => 'required',
-            'outdoor_features' => 'array', // Assuming outdoor_features is an array of checkbox values
+            'Bedrooms' => 'required',
+            'space' => 'required',
+            'price' => 'required',
+            'outdoor_features' => 'array', 
         ]);
 
         $post = new Post();
         
         $post->title = $validatedData['title'];
         $post->description = $validatedData['description'];
+        $post->Bedrooms = $validatedData['Bedrooms'];
+        $post->space = $validatedData['space'];
+        $post->price = $validatedData['price'];
         $post->type_id = $validatedData['post_type'];
         $post->user_id =1;
         $post->save();
@@ -61,7 +68,22 @@ class PostController extends Controller
         $post->outdoorfeature()->sync($validatedData['outdoor_features']);
         
 
+        
+        
+        $images = $request->file('images');
+        foreach ($images as $image) {
+            $filename = $image->getClientOriginalName();
+            $path = $image->store('images'); // assuming you want to store the images in the public/images directory
+            
+            Image::create([
+                'filename' => $filename,
+                'path' => $path,
+                'post_id'=> $post->id,
+            ]);
+        }
+
         return redirect()->route('post.create')->with('success', 'Post created successfully!');
+        // return redirect()->back()->with('success', 'Images uploaded successfully.');
         
     }
 
@@ -84,10 +106,15 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        // dd($id);
-        $post = Post::find($id); // Find the post by its ID
-        $types = Type::all(); // Fetch all types
-        $outdoorFeatures = OutdoorFeature::all(); // Fetch all outdoor features
+        
+        $post = Post::find($id); 
+        if (!$post) {
+            return response()->json(['error' => 'Post not found'], 404); 
+
+            return redirect()->back()->with('error', 'Post not found'); 
+        }
+        $types = Type::all(); 
+        $outdoorFeatures = OutdoorFeature::all(); 
 
         return view('update-poste', compact('post', 'types', 'outdoorFeatures'));
     }
@@ -105,13 +132,15 @@ class PostController extends Controller
             'title' => 'required',
             'description' => 'required',
             'post_type' => 'required',
-            'outdoor_features' => 'array', // Assuming outdoor_features is an array of checkbox values
+            'outdoor_features' => 'array', 
         ]);
     
-        $post = Post::find($id); // Find the post by its ID
+        $post = Post::find($id); 
     
         if (!$post) {
-            return redirect()->back()->with('error', 'Post not found'); // Return an error if the post is not found
+            return response()->json(['error' => 'Post not found'], 404); 
+
+            return redirect()->back()->with('error', 'Post not found'); 
         }
     
         // Update the post attributes
@@ -123,7 +152,7 @@ class PostController extends Controller
         // Sync the outdoor features
         $post->outdoorfeature()->sync($validatedData['outdoor_features']);
     
-        return redirect()->route('post.edit', $id)->with('success', 'Post updated successfully!'); // Redirect to edit page with success message
+        return redirect()->route('post.edit', $id)->with('success', 'Post updated successfully!'); 
     }
 
     /**
@@ -134,15 +163,14 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id); // Find the post by its ID
+        $post = Post::find($id); 
 
         if (!$post) {
-            return response()->json(['error' => 'Post not found'], 404); // Return an error response if the post is not found
+            return response()->json(['error' => 'Post not found'], 404); 
         }
-
-        // Delete the post
+        
         $post->delete();
 
-        return response()->json(['message' => 'Post deleted successfully']); // Return a success response
+        return response()->json(['message' => 'Post deleted successfully']); 
     }
 }
