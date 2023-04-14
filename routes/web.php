@@ -56,6 +56,7 @@ Route::get('/reply', [ReplyController::class,'index']);
 
 
 // test *****************************************
-
-
-Route::resource('post',PostController::class);
+// Route::prefix('post')->group(function(){
+    Route::post('post/destroyImage',[PostController::class,'destroyImage']);
+    Route::resource('post',PostController::class);
+// });
