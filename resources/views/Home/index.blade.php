@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @include('Home.layouts.header')   
 </head>
 <body class="flex flex-col">
     
   @include('Home.layouts.navBar')
-  {{-- @include('Home.layouts.CarouselWrapper')--}}
+  
   
   @yield('content')
   @include('Home.layouts.footerPage')

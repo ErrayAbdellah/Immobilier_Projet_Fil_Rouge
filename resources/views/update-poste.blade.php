@@ -9,14 +9,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    {{-- <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data" class="border-2 m-52 p-14">
-        @csrf  --}}
+    
     <form method="post" action="{{ route('post.update', $post->id) }}" enctype="multipart/form-data" class="border-2 m-52 p-14">
             @csrf
             @method('PUT')
 
         <div>
-            <label for="title" class="block mb-2 text-sm font-medium text-gray-900">title </label>
+            <label for="title" class="block mb-2 text-sm font-medium text-gray-900">title</label>
             <input type="text" name="title" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 "value="{{ $post->title }}">
         </div>
         <div>
@@ -59,10 +58,19 @@
             </ul>
         </div>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="images">
-            
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="images"></div>
+        
+        <div id="image-container" class="flex flex-wrap gap-2">
+        @foreach($images as $image)
+        
+            <div class="relative image_on">
+                <button type="button" value="{{$image->id}}" class="deleteImage text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="defaultModal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+            <img src="{{ asset('image_post/'.$image->filename) }}" alt="Image" class="w-24 h-24 object-cover rounded-lg">
         </div>
-
+        @endforeach
+        </div>
 
         <div class="">
             <label for="dropzone-file" class="flex  flex-col items-center justify-centerh-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
@@ -74,35 +82,10 @@
                 <input id="dropzone-file"type="file" name="images[]" onchange="onImageChange(event)" multiple class="hidden" />
             </label>
         </div> 
-        {{-- ********************************************************************** --}}
-        {{-- <div id="image-container" class="flex flex-wrap gap-2">
-        @foreach($images as $image)
-        
-            <div class="relative image_on">
-                <button type="button" value="{{$image->id}}" class="deleteImage text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="defaultModal">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                </button>
-            <img src="{{ asset('image_post/'.$image->filename) }}" alt="Image" class="w-24 h-24 object-cover rounded-lg">
-        </div>
-        @endforeach
-        </div> --}}
-
-        
-        {{-- ********************************************************************** --}}
        
         <button type="submit" class=" mt-5 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ">Create Post</button>
     </form>
-    <div id="image-container" class="flex flex-wrap gap-2">
-        @foreach($images as $image)
-        
-            <div class="relative image_on">
-                <button type="button" value="{{$image->id}}" class="deleteImage text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="defaultModal">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                </button>
-            <img src="{{ asset('image_post/'.$image->filename) }}" alt="Image" class="w-24 h-24 object-cover rounded-lg">
-        </div>
-        @endforeach
-        </div>
+    
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script>
 console.log('hi');
@@ -137,28 +120,7 @@ $(document).ready(function(){
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //show images addeds 
     function onImageChange(event){
         let images = document.getElementById('images');
         // console.log(event.target.files[0]);
@@ -181,7 +143,7 @@ $(document).ready(function(){
         
     }
 </script>
-    <br>
+    {{-- <br>
     <br>
     <br>
     <form action="{{ route('post.destroy', $post->id) }}" method="post">
@@ -189,6 +151,6 @@ $(document).ready(function(){
         @method('DELETE')
         <input type="text" name="post_id" value="{{ $post->id }}">
         <button type="submit">Delete</button>
-    </form>
+    </form> --}}
 </body>
 </html>

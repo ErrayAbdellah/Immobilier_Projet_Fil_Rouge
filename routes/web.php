@@ -1,6 +1,8 @@
 <?php
 
 // use App\Http\Controllers\ReplyController;
+
+use App\Http\Controllers\HomeController;
 use App\Notifications\ReplyAdded;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -47,7 +49,7 @@ Route::group([
 
 });
 
-Route::get('/home', function () { return view('Home.home'); })->name('Home');
+Route::get('/home',[HomeController::class,'index'])->name('Home');
 
 
 Route::get('/reply', [ReplyController::class,'index']);
@@ -55,8 +57,6 @@ Route::get('/reply', [ReplyController::class,'index']);
 
 
 
-// test *****************************************
-// Route::prefix('post')->group(function(){
-    Route::post('post/destroyImage',[PostController::class,'destroyImage']);
-    Route::resource('post',PostController::class);
-// });
+Route::post('post/destroyImage',[PostController::class,'destroyImage']);
+Route::resource('post',PostController::class);
+
