@@ -14,6 +14,7 @@
   
   
   @yield('content')
+  
   @include('Home.layouts.footerPage')
   @include('Home.layouts.footer')
 

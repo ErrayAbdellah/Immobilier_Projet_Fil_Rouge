@@ -49,7 +49,8 @@ Route::group([
 
 });
 
-Route::get('/home',[HomeController::class,'index'])->name('Home');
+Route::get('/home',[HomeController::class,'index'])->name('home');
+Route::get('/product',[HomeController::class,'product'])->name('product');
 
 
 Route::get('/reply', [ReplyController::class,'index']);
