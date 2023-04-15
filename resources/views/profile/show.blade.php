@@ -1,5 +1,10 @@
 
-@extends('admin.layout.master')
+
+{{-- @if (Auth::user()->role->id==1) --}}
+@extends('Home.index')
+{{-- @else --}}
+{{-- @extends('admin.layout.master') --}}
+{{-- @endif --}}
 
 @section('title')
     Edite Profile

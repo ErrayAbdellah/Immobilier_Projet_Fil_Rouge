@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Jetstream\Rules\Role;
 
 class Post extends Model
 {
@@ -39,6 +40,5 @@ class Post extends Model
     public function type(){
         return $this->belongsTo(Type::class);
     }
-
-
+    
 }

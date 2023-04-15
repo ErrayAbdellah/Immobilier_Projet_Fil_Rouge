@@ -16,29 +16,39 @@
     
 <!-- <p class="text-lg font-normal text-gray-500 lg:text-xl ">Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p> -->
 
-    <div class="flex items-center md:order-2">
+@if (Route::has('login'))
+{{-- <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block"> --}}
+    @auth
+          <div class="flex items-center md:order-2">
         <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 " id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
           <span class="sr-only">Open user menu</span>
-          <img class="w-8 h-8 rounded-full" src="http://t0.gstatic.com/licensed-image?q=tbn:ANd9GcTIKYE6b4GhB68ZkhTLyZMGiBpndA-FYVFrPU1Qwe9EE7VacC31GVNtMEw8o6CfSKVsKDE1Hmzotl17VBE" alt="user photo">
+          <img class="w-8 h-8 rounded-full" src="{{asset('images/logo/admin-roles.png ')}}" alt="user photo">
         </button>
         <!-- Dropdown menu -->
         <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow" id="user-dropdown">
           <div class="px-4 py-3">
-            <span class="block text-sm text-blue-50 ">Bonnie Green</span>
-            <span class="block text-sm  text-gray-500 truncate ">realestate@gmail.com</span>
+            <span class="block text-sm text-gray-800 ">{{Auth::user()->name}}</span>
+            <span class="block text-sm  text-gray-400 truncate ">{{Auth::user()->email}}</span>
           </div>
           <ul class="py-2" aria-labelledby="user-menu-button">
             <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">Dashboard</a>
+              <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">My profile</a>
             </li>
             <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">Settings</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">My Stor</a>
             </li>
             <li>
               <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">Earnings</a>
             </li>
             <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">Sign out</a>
+              <form method="POST" action="{{ route('logout') }}" x-data>
+                    @csrf
+
+                    <x-dropdown-link href="{{ route('logout') }}"
+                             @click.prevent="$root.submit();">
+                        {{ __('Log Out') }}
+                    </x-dropdown-link>
+                </form>
             </li>
           </ul>
         </div>
@@ -47,6 +57,17 @@
           <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
       </button>
     </div>
+    @else
+        <div class="flex items-center md:order-2">
+          <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+
+          @if (Route::has('register'))
+              <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+          @endif
+        </div>
+    @endauth
+{{-- </div> --}}
+@endif
     <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
       <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
         <li>

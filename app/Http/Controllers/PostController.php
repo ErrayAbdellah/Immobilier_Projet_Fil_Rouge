@@ -55,10 +55,13 @@ class PostController extends Controller
             'Bedrooms' => 'required',
             'space' => 'required',
             'price' => 'required',
+            'buyRent' => 'required',
+            // 'adresse' => 'required',
             'outdoor_features' => 'array', 
             
         ]);
-
+            // dd($request->buyRent);
+        
         $post = new Post();
         
         $post->title = $validatedData['title'];
@@ -67,6 +70,8 @@ class PostController extends Controller
         $post->space = $validatedData['space'];
         $post->price = $validatedData['price'];
         $post->type_id = $validatedData['post_type'];
+        $post->buyOrRent = $validatedData['buyRent'];
+        // $post->adresse = $validatedData['adresse'];
         $post->user_id =1;
         $post->save();
         
@@ -79,7 +84,6 @@ class PostController extends Controller
         foreach ($images as $image) {
             $extension = $image->getClientOriginalExtension();
             $filename = time() . '_' . Str::random(10) . '.' . $extension;
-            // dd($filename);
             $path = $image->store('images'); 
             
             try{

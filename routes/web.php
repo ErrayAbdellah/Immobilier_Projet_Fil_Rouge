@@ -49,9 +49,13 @@ Route::group([
 
 });
 
-Route::get('/home',[HomeController::class,'index'])->name('home');
-Route::get('/product',[HomeController::class,'product'])->name('product');
-Route::post('/filterPost',[HomeController::class,'filterPost'])->name('filterPost');
+Route::group([
+    // 'middleware'=>'isCustomer'
+],function(){
+    Route::get('/home',[HomeController::class,'index'])->name('home');
+    Route::get('/product',[HomeController::class,'product'])->name('product');
+    Route::post('/filterPost',[HomeController::class,'filterPost'])->name('filterPost');
+});
 
 
 Route::get('/reply', [ReplyController::class,'index']);

@@ -33,7 +33,7 @@
               </div>
               <ul class="py-1 font-light text-gray-500 " aria-labelledby="dropdown">
                 <li>
-                  <a href="{{ route('profile.show') }}" class="block py-2 px-4 text-sm hover:bg-gray-100  ">My profile</a>
+                  <a href="{{ route('profile.show') }}" class="block py-2 px-4 text-sm hover:bg-gray-100">My profile</a>
                 </li>
                 <li>
                   <a href="#" class="block py-2 px-4 text-sm hover:bg-gray-100  ">Account settings</a>

@@ -50,12 +50,12 @@ class HomeController extends Controller
     }
 
     // Filter by Outdoor Features
-    if ($request->has('filterOutdoor_features')) {
-        $outdoorFeatureIds = $request->input('filterOutdoor_features');
-        $query->whereHas('outdoorfeature', function ($query) use ($outdoorFeatureIds) {
-            $query->whereIn('outdoorfeature_id', $outdoorFeatureIds);
-        });
-    }
+    // if ($request->has('filterOutdoor_features')) {
+    //     $outdoorFeatureIds = $request->input('filterOutdoor_features');
+    //     $query->whereHas('outdoorfeature', function ($query) use ($outdoorFeatureIds) {
+    //         $query->whereIn('outdoorfeature_id', $outdoorFeatureIds);
+    //     });
+    // }
 
     $posts = $query->get();
     

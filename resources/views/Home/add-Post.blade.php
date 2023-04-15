@@ -5,7 +5,18 @@
 <div class="p-14 mt-16 flex justify-center">
     <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data" class="border-2 p-4 w-max space-y-4" style="width: 50rem">
         @csrf 
-    
+        
+        <div class="flex sm:justify-around flex-wrap">
+            <div class="flex items-center pl-4 border border-gray-200 rounded">
+                <input checked id="buyRent-1" type="radio" value="1" name="buyRent" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <label for="buyRent-1" class="p-4 ml-2 text-sm font-medium text-gray-900">Sell</label>
+            </div>
+            <div class="flex items-center pl-4 border border-gray-200 rounded">
+                <input id="buyRent-2" type="radio" value="2" name="buyRent" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <label for="buyRent-2" class="p-4 ml-2 text-sm font-medium text-gray-900">Rent</label>
+            </div>
+        </div>
+
         <div class="flex sm:justify-around flex-wrap"> 
             <div>
                 <label for="title" class="block mb-2 text-sm font-medium text-gray-900">title </label>
@@ -36,7 +47,7 @@
                 @endforeach
                 </select>
             </div>
-            <div class="">
+            {{-- <div class="">
                 <label for="post_type" class="block mb-2 text-sm font-medium text-gray-900">Small select</label>
                 <select name="post_type" id="post_type" class="block w-64 p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 ">
                 <option selected>Choose a type</option>
@@ -44,7 +55,7 @@
                 <option value="{{ $type->id }}">{{ $type->name }}</option>
                 @endforeach
                 </select>
-            </div>
+            </div> --}}
         </div>
         
         <div class="sm:ml-16">
