@@ -16,7 +16,7 @@
                       <!-- Carousel wrapper -->
                       <div class="relative h-56 overflow-hidden rounded-lg">
                           <div class=" h-62 w-full mb-3">
-                              @foreach($images as $image)
+                            @foreach($images as $image)
                                 <div class="hidden duration-700 " data-carousel-item="active"> 
                                     <img src="{{ asset('image_post/'.$image->filename) }}" alt="Just a flower" class="  object-fill  rounded-2xl">
                                 </div>

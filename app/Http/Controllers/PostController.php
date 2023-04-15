@@ -35,8 +35,9 @@ class PostController extends Controller
     public function create()
     {
         $types = Type::all();
-        $outdoorFeature = Outdoorfeature::all();
-        return view('add-Post',['outdoorFeatures' => $outdoorFeature,'types'=>$types]);
+        $outdoorFeatures = Outdoorfeature::all();
+        // dd('nady');
+        return view('Home.add-Post',compact('types','outdoorFeatures'));
     }
 
     /**

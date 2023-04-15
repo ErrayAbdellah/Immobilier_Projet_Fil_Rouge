@@ -52,7 +52,8 @@
               <img src="{{ URL::asset('images/home/Artboard 1.png') }}" class="mt-3" alt="" width="80%">
               
               <footer class="mb-10 mt-10 flex justify-center">
-                <button
+                <button 
+                
                   class="flex items-center rounded-lg bg-blue-700 px-4 py-2.5 text-xl font-bold text-white hover:bg-blue-600"
                 >
                   <p>Buy</p>
@@ -121,6 +122,8 @@
           
           <footer class="mb-10 mt-14 flex justify-center">
             <button
+            {{-- @dd(route('post/create')) --}}
+            onclick="window.location.href='{{route('post.create')}}';"
               class="flex items-center rounded-lg bg-blue-700 px-4 py-2.5 text-xl font-bold text-white hover:bg-blue-600"
             >
               <p>Sell</p>
@@ -170,18 +173,17 @@
                           </button>
                         </div> --}}
 
-                        <div class="hidden duration-700 " data-carousel-item="active"> 
-                          <img src="../images_realeState/pexels-photo-1396122.jpg" alt="Just a flower" class="  object-fill  rounded-2xl">
-                        </div>
-                        <div class="hidden duration-700 " data-carousel-item>
-                          <img src="../images_realeState/pexels-photo-1000057.jpg" alt="Just a flower" class="  object-fill  rounded-2xl">
-                        </div>
-                        <div class="hidden duration-700 " data-carousel-item>
-                          <img src="../images_realeState/pexels-photo-210617.jpg" alt="Just a flower" class="  object-fill  rounded-2xl">
-                        </div>
-                        <div class="hidden duration-700 " data-carousel-item>
-                            <img src="../images_realeState/pexels-photo-1732414.jpg" alt="Just a flower" class="  object-fill  rounded-2xl">
-                          </div>
+                        {{-- <div class="hidden duration-700 " data-carousel-item="active"> 
+                          <img src="" alt="Just a flower" class="  object-fill  rounded-2xl">
+                          
+                        </div> --}}
+                        @foreach($images as $image)
+                                <div class="hidden duration-700 " data-carousel-item="active"> 
+                                    <img src="{{ asset('image_post/'.$image->filename) }}" alt="Just a flower" class="  object-fill  rounded-2xl">
+                                </div>
+                            @endforeach
+                        
+                        
                       </div>
                     <!-- ***************************** -->
                 </div>
