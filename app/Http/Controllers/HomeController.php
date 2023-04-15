@@ -66,4 +66,15 @@ class HomeController extends Controller
     return view('Home.product', compact('posts','images','types','outdoorFeatures'));
 
     }
+
+    public function createBuypage(Request $request, $id){
+
+        // dd($id);
+        $post = Post::find($id);
+        $images = Image::with('post')->get();
+        $types = Type::all();
+        $outdoorFeatures = Outdoorfeature::all();
+        // dd($images);
+        return view('Home.buy-page',compact('post','images','types','outdoorFeatures'));
+    }
 }

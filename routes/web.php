@@ -2,6 +2,7 @@
 
 // use App\Http\Controllers\ReplyController;
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Notifications\ReplyAdded;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,9 @@ Route::group([
     Route::get('/home',[HomeController::class,'index'])->name('home');
     Route::get('/product',[HomeController::class,'product'])->name('product');
     Route::post('/filterPost',[HomeController::class,'filterPost'])->name('filterPost');
+    Route::get('/buypage/{id}',[HomeController::class,'createBuypage'])->name('buyPage');
+    
+    Route::resource('comment',CommentController::class);
 });
 
 
@@ -65,4 +69,3 @@ Route::get('/reply', [ReplyController::class,'index']);
 
 Route::post('post/destroyImage',[PostController::class,'destroyImage']);
 Route::resource('post',PostController::class);
-

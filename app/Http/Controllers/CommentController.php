@@ -35,7 +35,11 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->commentPost,$request->idPostComment);
+
+        $request->validate([
+            'commentPost' => 'required'
+        ]);
     }
 
     /**
