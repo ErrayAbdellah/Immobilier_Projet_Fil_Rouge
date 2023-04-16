@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Outdoorfeature;
 use App\Models\Post;
 use App\Models\Type;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,6 +20,7 @@ class HomeController extends Controller
 
     public function product(){
         $posts = Post::all();
+        // dd($posts);
         $images = Image::with('post')->get();
         $types = Type::all();
         $outdoorFeatures = Outdoorfeature::all();
@@ -69,12 +72,13 @@ class HomeController extends Controller
 
     public function createBuypage(Request $request, $id){
 
-        // dd($id);
         $post = Post::find($id);
-        $images = Image::with('post')->get();
+        $images = Image::with('post')->where('post_id','=',$id)->get();
+        $comments = Comment::with('post')->where('post_id','=',$id)->get();
+        $users = User::with('comment')->get();
+        // dd($users);
         $types = Type::all();
         $outdoorFeatures = Outdoorfeature::all();
-        // dd($images);
-        return view('Home.buy-page',compact('post','images','types','outdoorFeatures'));
+        return view('Home.buy-page',compact('post','images','types','outdoorFeatures','comments','users'));
     }
 }

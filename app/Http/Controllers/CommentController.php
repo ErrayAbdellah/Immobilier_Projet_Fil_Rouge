@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class CommentController extends Controller
 {
@@ -37,9 +39,27 @@ class CommentController extends Controller
     {
         // dd($request->commentPost,$request->idPostComment);
 
-        $request->validate([
-            'commentPost' => 'required'
+        $validatRequest = $request->validate([
+            'commentPost' => 'required',
+            'idPostComment'=> 'required'
         ]);
+
+        $comment = new Comment();
+
+       try{
+        $comment->description = $validatRequest['commentPost'];
+        $comment->post_id = $validatRequest['idPostComment'];
+        $comment->like = 1;
+        $comment->user_id = 2;
+
+        $comment->save();
+        
+       }catch(Exception $e){
+        dd( $e->getMessage());
+        return redirect()->back()->with('error', $e->getMessage()); 
+       }
+
+
     }
 
     /**

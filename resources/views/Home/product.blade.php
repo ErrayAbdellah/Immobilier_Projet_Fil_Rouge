@@ -16,11 +16,15 @@
                       <!-- Carousel wrapper -->
                       <div class="relative h-56 overflow-hidden rounded-lg">
                           <div class=" h-62 w-full mb-3">
+                            {{-- @dd($images) --}}
                             @foreach($images as $image)
-                                <div class="hidden duration-700 " data-carousel-item="active"> 
-                                    <img src="{{ asset('image_post/'.$image->filename) }}" alt="Just a flower" class="  object-fill  rounded-2xl">
-                                </div>
-                            @endforeach
+                            {{-- @if ($image->post_id == $post->id) --}}
+                            {{-- @dd($post->id) --}}
+                              <div class="hidden duration-700 " data-carousel-item="active"> 
+                                <img src="{{ asset('image_post/'.$image->filename) }}" alt="Just a flower" class="  object-fill  rounded-2xl">
+                              </div>
+                              {{-- @endif --}}
+                              @endforeach
                             </div>
                       </div>
                       <!-- Slider controls -->
