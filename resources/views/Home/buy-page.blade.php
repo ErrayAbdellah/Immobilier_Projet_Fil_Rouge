@@ -10,7 +10,7 @@
 
 
 </head>
-<body >
+<body>
     <div class="container mx-auto">
         <div class="">
             <div class="flex flex-col md:flex-row md:items-center">

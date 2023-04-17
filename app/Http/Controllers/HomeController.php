@@ -14,18 +14,25 @@ class HomeController extends Controller
 {
     public function index(){
         $posts = Post::all();
-        $images = Image::with('post')->get();
+        $images=array();
+        // foreach ($posts  as $post) {
+            $images = Image::with('post')->get();
+            
+        // }
+        // dd($images);
         return view('Home.home',compact('posts','images'));
     }
 
     public function product(){
-        $posts = Post::all();
-        // dd($posts);
-        $images = Image::with('post')->get();
-        $types = Type::all();
-        $outdoorFeatures = Outdoorfeature::all();
+        $posts = Post::with('images','type','outdoorfeature')->get();
 
-        return view('Home.product',compact('posts','images','types','outdoorFeatures'));
+        // $posts = Post::all();
+            // dd($posts);
+            // $images = Image::with('post')->get();
+            $types = Type::all();
+            $outdoorFeatures = Outdoorfeature::all();
+
+        return view('Home.product',compact('posts','types','outdoorFeatures'));
     }
 
 

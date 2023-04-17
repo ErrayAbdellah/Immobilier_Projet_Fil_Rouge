@@ -34,8 +34,8 @@ class Post extends Model
     {
         return $this->belongsToMany(Outdoorfeature::class, 'post_outdoorfeature', 'post_id', 'outdoorfeature_id');
     }
-    public function image(){
-        return $this->belongsTo(Image::class);
+    public function images(){
+        return $this->hasMany(Image::class);
     }
     public function type(){
         return $this->belongsTo(Type::class);
