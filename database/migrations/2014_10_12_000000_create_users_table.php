@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->date('dateBirthday')->default('2000-03-03');
-            $table->string('phone')->default('');
-            $table->string('city')->default('');
-            $table->string('email')->unique();
             $table->string('phone');
+            // $table->string('city');
+            $table->string('email')->unique();
             $table->string('dateBir');
             $table->foreignId('role_id')->default(1)->constrained('roles')->onDelete('cascade');
             $table->timestamp('email_verified_at')->nullable();

@@ -1,19 +1,27 @@
 <x-guest-layout>
     <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+        {{-- <x-slot name="logo"> --}}
+            {{-- <x-authentication-card-logo /> --}}
+        {{-- </x-slot> --}}
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}"  class="mb-3 text-2xl font-bold">
             @csrf
 
-            <div>
+            <div >
                 <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-input id="name"  class="my-3 w-full border border-none bg-transparent outline-none rounded-2xl bg-gray-50 px-4 ring-2 ring-gray-200 focus-within:ring-blue-400"  type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
+            <div class="mt-4">
+                <x-label for="phone" value="{{ __('phone') }}" />
+                <x-input id="phone" class="block mt-1 w-full " type="text" name="phone" :value="old('phone')" required autocomplete="username" />
+            </div>
+            <div class="mt-4">
+                <x-label for="dateBirthday" value="{{ __('date birthay') }}" />
+                <x-input id="dateBirthday" class="block mt-1 w-full" type="date" name="dateBirthday" :value="old('dateBirthday')" required autocomplete="username" />
+            </div>
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
