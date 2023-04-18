@@ -165,30 +165,17 @@
               <div id="controls-carousel" class="relative w-full" data-carousel="static">
                 <!-- Carousel wrapper -->
                 <div class="relative h-56 overflow-hidden rounded-lg">
-                    <div class=" h-62 w-full mb-3">
-                        {{-- <div class="absolute flex flex-col top-0 right-0 p-3">
-                          <button class="transition ease-in duration-300 bg-gray-800  hover:text-purple-500 shadow hover:shadow-md text-gray-500 rounded-full w-8 h-8 text-center p-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                          </button>
-                        </div> --}}
-
-                        {{-- <div class="hidden duration-700 " data-carousel-item="active"> 
-                          <img src="" alt="Just a flower" class="  object-fill  rounded-2xl">
-                          
-                        </div> --}}
-                        @foreach($images as $image)
-                                <div class="hidden duration-700 " data-carousel-item="active"> 
-                                    <img src="{{ asset('image_post/'.$image->filename) }}" alt="Just a flower" class="  object-fill  rounded-2xl">
-                                </div>
-                            @endforeach
-                        
-                        
+                  <div class=" h-62 w-full mb-3">
+                    @foreach($post->images as $image)
+                      <div class="duration-700 mb-4" data-carousel-item>
+                        {{-- <h1>{{$image->filename}}</h1>  --}}
+                        <img src="{{ asset('image_post/'.$image->filename) }}" alt="Just a flower" class="  object-fill  rounded-2xl">
                       </div>
-                    <!-- ***************************** -->
+                    @endforeach
+                  </div>
                 </div>
                 <!-- Slider controls -->
-                <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                {{-- <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
                     <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
                         <svg aria-hidden="true" class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                         <span class="sr-only">Previous</span>
@@ -199,7 +186,7 @@
                         <svg aria-hidden="true" class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         <span class="sr-only">Next</span>
                     </span>
-                </button>
+                </button> --}}
             </div>
             
               <div class="flex-auto justify-evenly">

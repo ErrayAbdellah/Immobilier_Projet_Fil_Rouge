@@ -1,3 +1,32 @@
+
+<style>
+  .scrollComement{
+      
+      ::-webkit-scrollbar-track{
+              background: #ffffff6b
+          }
+      ::-webkit-scrollbar-thumb{
+          /* background: linear-gradient(to right,); */
+          background: #83838389;
+          border-radius:20px;
+      }
+      ::-webkit-scrollbar-thumb:hover{
+          background: #000000da;
+          /* background: linear-gradient(to right,#02a1dbda,#a8cf45ce); */
+      }
+      ::-webkit-scrollbar{
+          width: 7px;
+          height: 4px;
+      }
+  }
+  .nav .nav-item.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  .bg-blue-500 {
+    background-color: #007bff;
+  }
+  </style>
 <nav class="bg-white border-gray-200 fixed z-30" style="width: 100%;">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <button data-drawer-target="filtrePr" data-drawer-toggle="filtrePr" aria-controls="filtrePr" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 ">
@@ -69,6 +98,18 @@
 {{-- </div> --}}
 @endif
     <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
+      <ul class="flex">
+        {{-- @dd(request()) --}}
+        <li class="mr-6 {{(request()->is('/home')) ? 'active' : '' }}">
+          <a href="/home" class="text-gray-500 hover:text-gray-400 {{ (request()->is('/home')) ? 'bg-blue-500' : '' }}">Home</a>
+        </li>
+        <li class="mr-6 {{(request()->is('about')) ? 'active' : '' }}">
+          <a href="/about" class="text-gray-500 hover:text-gray-400 {{(request()->is('about')) ? 'bg-blue-500' : '' }}">About</a>
+        </li>
+        <li class="mr-6 {{(request()->is('contact')) ? 'active' : '' }}">
+          <a href="/contact" class="text-gray-500 hover:text-gray-400 {{(request()->is('contact')) ? 'bg-blue-500' : '' }}">Contact</a>
+        </li>
+    </ul>
       <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
         <li>
           <a href="{{route('home')}}" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 " aria-current="page">Home</a>

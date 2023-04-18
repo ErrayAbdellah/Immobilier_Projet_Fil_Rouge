@@ -21,7 +21,7 @@
                           <div class=" h-62 w-full mb-3">
                             @foreach($post->images as $image)
                               <div class="duration-700 " data-carousel-item>
-                                <h1>{{$image->filename}}</h1> 
+                                {{-- <h1>{{$image->filename}}</h1>  --}}
                                 <img src="{{ asset('image_post/'.$image->filename) }}" alt="Just a flower" class="  object-fill  rounded-2xl">
                               </div>
                               @endforeach

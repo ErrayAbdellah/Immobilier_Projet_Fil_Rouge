@@ -13,14 +13,15 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        $posts = Post::all();
-        $images=array();
+        // $posts = Post::all();
+        // $images=array();
         // foreach ($posts  as $post) {
-            $images = Image::with('post')->get();
+            $posts = Post::with('images')->get();
+            // $images = Image::with('post')->get();
             
         // }
-        // dd($images);
-        return view('Home.home',compact('posts','images'));
+        // dd($posts[3]->images);
+        return view('Home.home',compact('posts'));
     }
 
     public function product(){

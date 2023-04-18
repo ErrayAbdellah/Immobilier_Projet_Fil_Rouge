@@ -28,9 +28,17 @@
         height: 4px;
     }
 }
+.nav .nav-item.active {
+  background-color: #007bff;
+  color: #fff;
+}
+.bg-blue-500 {
+  background-color: #007bff;
+}
 </style>
 </head>
 <body>
+    
     <div class="container mx-auto">
         <div class="">
             <div class="flex flex-col md:flex-row md:items-center ">
