@@ -122,53 +122,48 @@
             <thead>
                 <tr>
                     <th data-priority="1" class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Name</th>
-                    <th data-priority="2">Position</th>
-                    <th data-priority="3">Office</th>
-                    <th data-priority="4">Age</th>
+                    <th data-priority="2">annonce</th>
                     <th data-priority="5">Start date</th>
-                    <th data-priority="6">Salary</th>
+                    <th data-priority="6">Role</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 h-10 w-10">
-                              <img
-                                   class="h-10 w-10 rounded-full"
-                                   src="https://images.unsplash.com/photo-1619914775389-748e5e136c26?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=100&ixid=MnwxfDB8MXxyYW5kb218fHx8fHx8fHwxNjIwMTk4MjAw&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=100"
-                                   alt=""
-                                   />
+                @foreach ($users as $user)                
+                    <tr>
+                        <td>
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 h-10 w-10">
+                                <img
+                                    class="h-10 w-10 rounded-full"
+                                    src="{{ $user->profile_photo_url }}"
+                                    alt=""
+                                    />
+                                </div>
+                                <div class="ml-4">
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ $user->name}}
+                                </div>
+                                <div class="text-sm text-gray-500">
+                                    {{ $user->email}}
+                                </div>
+                                </div>
                             </div>
-                            <div class="ml-4">
-                              <div class="text-sm font-medium text-gray-900">
-                                Flora Wu
-                              </div>
-                              <div class="text-sm text-gray-500">
-                                flora.wu@example.com
-                              </div>
-                            </div>
-                          </div>
-                    </td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span
-                              class="
-                                     px-2
-                                     inline-flex
-                                     text-xs
-                                     leading-5
-                                     font-semibold
-                                     rounded-full
-                                     bg-green-100 text-green-800 ">
-                          Active
-                        </span>
-                    </td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                </tr>
-
+                        </td>
+                        <td>
+                            12post
+                        </td>
+                        <td>{{ $user->created_at->toDateString() }}</td>
+                        <td>{{ $user->role->name }}</td>
+                        <td>
+                            <label class="relative inline-flex items-center mr-5 cursor-pointer">
+                                <input type="checkbox" id="changeRole" value="{{$user->role->id}}" class="sr-only peer" {{$user->role->id==1 ? 'checked' : ''}}>
+                                <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                <span class="ml-3 text-sm font-medium text-gray-900">{{$user->role->name}}</span>
+                            </label>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
 
         </table>
@@ -185,12 +180,14 @@
 
 
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <!--Datatables -->
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
 <script>
     $(document).ready(function() {
 
@@ -200,6 +197,37 @@
             .columns.adjust()
             .responsive.recalc();
     });
+
+
+    $(document).ready(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $(document).on('click', '#changeRole',function(){
+        // if(confirm('Are you sure you want to change this Role ?')){
+            // console.log();
+            
+            $.ajax({
+                type: "post",
+                url: "/admin/users/changeRole",
+                data: {
+                    'idRole' : document.getElementById('changeRole').value,
+                },
+                success: function (res) {
+                    if(res.status == 200){
+                        console.log(res.message);
+                        // alert(res.message)
+                    }else{
+                        // alert(res.message)
+                    }
+                }
+            });
+        // }
+    });
+});
+
 </script>
 @endsection
 

@@ -98,10 +98,9 @@
 {{-- </div> --}}
 @endif
     <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
-      <ul class="flex">
-        {{-- @dd(request()) --}}
+      {{-- <ul class="flex">
         <li class="mr-6 {{(request()->is('/home')) ? 'active' : '' }}">
-          <a href="/home" class="text-gray-500 hover:text-gray-400 {{ (request()->is('/home')) ? 'bg-blue-500' : '' }}">Home</a>
+          <a href="/home" class="text-gray-500 hover:text-gray-400 ">Home</a>
         </li>
         <li class="mr-6 {{(request()->is('about')) ? 'active' : '' }}">
           <a href="/about" class="text-gray-500 hover:text-gray-400 {{(request()->is('about')) ? 'bg-blue-500' : '' }}">About</a>
@@ -109,19 +108,19 @@
         <li class="mr-6 {{(request()->is('contact')) ? 'active' : '' }}">
           <a href="/contact" class="text-gray-500 hover:text-gray-400 {{(request()->is('contact')) ? 'bg-blue-500' : '' }}">Contact</a>
         </li>
-    </ul>
+    </ul> --}}
       <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
         <li>
-          <a href="{{route('home')}}" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 " aria-current="page">Home</a>
+          <a href="{{route('home')}}" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('home')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0 " aria-current="page">Home</a>
         </li>
         <li>
-          <a href="{{route('product')}}" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Product</a>
+          <a href="{{route('product')}}" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('product')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0">Product</a>
         </li>
         <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Services</a>
+          <a href="#" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('#')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0">Services</a>
         </li>
         <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">About</a>
+          <a href="#" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('#')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0">About</a>
         </li>
         <li>
           <a href="pages/contactUs.html" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Contact</a>

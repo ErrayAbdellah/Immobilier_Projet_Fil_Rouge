@@ -2,6 +2,7 @@
 
 // use App\Http\Controllers\ReplyController;
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Notifications\ReplyAdded;
@@ -45,7 +46,8 @@ Route::group([
     'verified',
     'prefix' => 'admin',
 ],function(){
-    Route::get('/users', function () { return view('admin.users'); })->name('users');
+    Route::get('/users',[AdminController::class ,'usersShow'])->name('users');
+    Route::post('/users/changeRole',[AdminController::class ,'changeRole'])->name('changeRole');
     Route::get('/dashboard', function () { return view('admin.dashboard'); })->name('dashboard');
 
 });
