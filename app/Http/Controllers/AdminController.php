@@ -14,13 +14,21 @@ class AdminController extends Controller
     }
 
     public function changeRole(Request $request){
-
+        
         if($request->idRole == 1){
-            
+            $dataid = 2 ;
         }
+        else if($request->idRole == 2){
+            $dataid = 1 ;
+        }
+
+        User::find($request->id)->update([
+            'role_id'=> $dataid,
+        ]);
+
         return response()->json([
             'status'=>'200',
-            'message'=>'nady '.$request->idRole,
+            'message'=>'nady '.$request->id,
         ]);
     }
 }

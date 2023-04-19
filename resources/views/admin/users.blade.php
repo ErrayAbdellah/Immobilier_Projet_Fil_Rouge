@@ -110,7 +110,7 @@
 
     <!--Title-->
     <h1 class="flex items-center font-sans font-bold break-normal text-indigo-500 px-2 py-8 text-xl md:text-2xl">
-        Responsive <a class="underline mx-2" href="#">Users</a> Table
+      users
     </h1>
 
 
@@ -125,7 +125,7 @@
                     <th data-priority="2">annonce</th>
                     <th data-priority="5">Start date</th>
                     <th data-priority="6">Role</th>
-                    <th></th>
+                    {{-- <th></th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -154,12 +154,11 @@
                             12post
                         </td>
                         <td>{{ $user->created_at->toDateString() }}</td>
-                        <td>{{ $user->role->name }}</td>
                         <td>
                             <label class="relative inline-flex items-center mr-5 cursor-pointer">
-                                <input type="checkbox" id="changeRole" value="{{$user->role->id}}" class="sr-only peer" {{$user->role->id==1 ? 'checked' : ''}}>
+                                <input type="checkbox" id="changeRole" value="" onclick="Rolechnged({{ $user->id }},{{$user->role->id}})" class="sr-only peer" {{$user->role->id==2 ? 'checked' : ''}}>
                                 <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                                <span class="ml-3 text-sm font-medium text-gray-900">{{$user->role->name}}</span>
+                                <span class="ml-3 text-sm font-medium text-gray-900">{{ $user->role->name }}</span>
                             </label>
                         </td>
                     </tr>
@@ -197,36 +196,31 @@
             .columns.adjust()
             .responsive.recalc();
     });
-
-
-    $(document).ready(function(){
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $(document).on('click', '#changeRole',function(){
-        // if(confirm('Are you sure you want to change this Role ?')){
-            // console.log();
-            
-            $.ajax({
+    function Rolechnged(id,roleId)
+    {
+        
+                $.ajax({
                 type: "post",
                 url: "/admin/users/changeRole",
                 data: {
-                    'idRole' : document.getElementById('changeRole').value,
+                    'idRole' : roleId,
+                    'id':id
                 },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+
                 success: function (res) {
                     if(res.status == 200){
-                        console.log(res.message);
-                        // alert(res.message)
+                        // console.log(id);
+                        alert(res.message)
                     }else{
-                        // alert(res.message)
+                        alert(res.message)
                     }
                 }
             });
-        // }
-    });
-});
+    }
+
 
 </script>
 @endsection
