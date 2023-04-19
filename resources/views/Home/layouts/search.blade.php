@@ -1,3 +1,26 @@
+<style>
+  .scrollComement{
+    
+    ::-webkit-scrollbar-track{
+            background: #ffffff6b
+        }
+    ::-webkit-scrollbar-thumb{
+        /* background: linear-gradient(to right,); */
+        background: #83838389;
+        border-radius:20px;
+    }
+    ::-webkit-scrollbar-thumb:hover{
+        background: #000000da;
+        /* background: linear-gradient(to right,#02a1dbda,#a8cf45ce); */
+    }
+    ::-webkit-scrollbar{
+        width: 7px;
+        height: 4px;
+    }
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+
 <div class=" flex justify-center mt-4">
          
     <div class="right-0 h-auto w-3/5 rounded-t shadow-green-500\/50"  style="background-color: #f0f4f4;">
@@ -64,26 +87,51 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="p-6 space-y-6">
-                <p class="text-base leading-relaxed text-gray-500 ">
-                    With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-                </p>
-                <p class="text-base leading-relaxed text-gray-500 ">
-                    The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-                </p>
-            </div>
-            <!-- Modal footer -->
-            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b ">
-                <button data-modal-hide="staticModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">I accept</button>
-                <button data-modal-hide="staticModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 ">Decline</button>
-            </div>
+            <form action="{{ route('filterPost')}}" method="POST" class="h-full px-3 py-4 overflow-y-auto bg-gray-200 ">
+              @csrF
+              <!-- Filter by Property Type -->
+              <div class="bg-white shadow-md rounded-md p-4 my-1">
+                  <h2 class="text-lg font-semibold mb-4">Property Type</h2>
+                  <select name="Filterpost_type" id="post_type" class="block  p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 ">
+                      <option selected>Choose a type</option>
+                      @foreach($types as $type)
+                      <option value="{{ $type->id }}" >{{ $type->name }}</option>
+                      @endforeach
+                  </select>
+              </div>
+              
+              <!-- Filter by Price Range -->
+              <div class="bg-white shadow-md rounded-md p-4 my-1">
+                <h2 class="text-lg font-semibold mb-4">Price Range</h2>
+                  <input name="filterMinPrice" type="number"class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 " placeholder="Min Price">
+                  <input name="filterMaxPrice" type="number"class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 " placeholder="Max Price">
+                </div>
+            
+              <!-- Filter by Bedrooms -->
+              <div class="bg-white shadow-md rounded-md p-4 my-1" id="Bedrooms">
+                  <h2 class="text-lg font-semibold mb-4">Bedrooms</h2>
+                  <input name="filterNumBedrooms" type="number"class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 " placeholder="number of Bedrooms">
+                </div>
+                <!-- Filter by Outdoor Features -->
+                <div class="bg-white shadow-md rounded-md p-4 my-1" id="outdoorFeatures">
+                    @foreach($outdoorFeatures as $outdoorFeature)
+                        <input type="checkbox" name="filterOutdoor_features[]" value="{{ $outdoorFeature->id }}" id="outdoor_feature_{{ $outdoorFeature->id }}" class="w-4 mt-2 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 border-2">
+                        <label for="outdoor_feature_{{ $outdoorFeature->id }}" class="w-full py-3 ml-2 mb-5 text-sm font-medium text-gray-900">{{ $outdoorFeature->name }} </label><br>
+                    @endforeach
+                </div>
+                <!-- Modal footer -->
+                <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b ">
+                  <input type="submit" value="submit" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                  <button data-modal-hide="RentModel" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 ">Decline</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
 <!-- Main modal -->
-<div id="RentModel" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
-  <div class="relative w-full h-full max-w-2xl md:h-auto">
+<div id="RentModel" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 mt-5 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+  <div class="mt-14 mt-14 overflow-scroll scrollComement relative w-full h-full max-w-2xl md:h-auto">
       <!-- Modal content -->
       <div class="relative bg-white rounded-lg shadow ">
           <!-- Modal header -->
@@ -96,19 +144,58 @@
               </button>
           </div>
           <!-- Modal body -->
-          <div class="p-6 space-y-6">
-              <p class="text-base leading-relaxed text-gray-500 ">
-                  With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-              </p>
-              <p class="text-base leading-relaxed text-gray-500 ">
-                  The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-              </p>
-          </div>
-          <!-- Modal footer -->
-          <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b ">
-              <button data-modal-hide="RentModel" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">I accept</button>
-              <button data-modal-hide="RentModel" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 ">Decline</button>
-          </div>
+          <form action="{{ route('filterPost')}}" method="POST" class="h-full px-3 py-4 overflow-y-auto bg-gray-200 ">
+              @csrF
+              <!-- Filter by Property Type -->
+              <div class="bg-white shadow-md rounded-md p-4 my-1">
+                  <h2 class="text-lg font-semibold mb-4">Property Type</h2>
+                  <select name="Filterpost_type" id="post_type" class="block  p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 ">
+                      <option selected>Choose a type</option>
+                      @foreach($types as $type)
+                      <option value="{{ $type->id }}" >{{ $type->name }}</option>
+                      @endforeach
+                  </select>
+            </div>
+            
+            <!-- Filter by Price Range -->
+            <div class="bg-white shadow-md rounded-md p-4 my-1">
+              <h2 class="text-lg font-semibold mb-4">Price Range</h2>
+                <input name="filterMinPrice" type="number"class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 " placeholder="Min Price">
+                <input name="filterMaxPrice" type="number"class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 " placeholder="Max Price">
+              </div>
+          
+            <!-- Filter by Bedrooms -->
+            <div class="bg-white shadow-md rounded-md p-4 my-1" id="Bedrooms">
+                <h2 class="text-lg font-semibold mb-4">Bedrooms</h2>
+                <input name="filterNumBedrooms" type="number"class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 " placeholder="number of Bedrooms">
+              </div>
+              <!-- Filter by Outdoor Features -->
+              <div class="bg-white shadow-md rounded-md p-4 my-1" id="outdoorFeatures">
+                  @foreach($outdoorFeatures as $outdoorFeature)
+                      <input type="checkbox" name="filterOutdoor_features[]" value="{{ $outdoorFeature->id }}" id="outdoor_feature_{{ $outdoorFeature->id }}" class="w-4 mt-2 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 border-2">
+                      <label for="outdoor_feature_{{ $outdoorFeature->id }}" class="w-full py-3 ml-2 mb-5 text-sm font-medium text-gray-900">{{ $outdoorFeature->name }} </label><br>
+                  @endforeach
+              </div>
+              <!-- Modal footer -->
+              <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b ">
+                <input type="submit" value="submit" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                <button data-modal-hide="RentModel" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 ">Decline</button>
+              </div>
+          </form>
       </div>
   </div>
 </div>
+
+
+<script>
+  $('#post_type').on('change', function() {
+  var value = $(this).val();
+  if(value == 4){
+    $("#Bedrooms").hide();
+    $("#outdoorFeatures").hide();
+  }else{
+    $("#Bedrooms").show();
+    $("#outdoorFeatures").show();
+  }
+});
+</script>

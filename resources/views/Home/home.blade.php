@@ -1,6 +1,27 @@
 @extends('Home.index')
 
 @section('content')
+<style>
+  .scrollComement{
+    
+    ::-webkit-scrollbar-track{
+            background: #ffffff6b
+        }
+    ::-webkit-scrollbar-thumb{
+        /* background: linear-gradient(to right,); */
+        background: #83838389;
+        border-radius:20px;
+    }
+    ::-webkit-scrollbar-thumb:hover{
+        background: #000000da;
+        /* background: linear-gradient(to right,#02a1dbda,#a8cf45ce); */
+    }
+    ::-webkit-scrollbar{
+        width: 7px;
+        height: 4px;
+    }
+}
+</style>
 <div id="default-carousel" class="relative w-full" data-carousel="slide">
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96 opacity-70" >
@@ -156,7 +177,7 @@
     </div>
     {{-- @dd($posts) --}}
     {{-- <h1>{{ $post->title }}</h1> --}}
-    <div class=" scroll-container h-auto rounded-md flex space-x-2 overflow-x-auto p-6 mx-2">
+    <div class=" scroll-container h-auto rounded-md flex space-x-2 overflow-x-auto p-6 mx-2 scrollComement">
         @foreach($posts as $post)
         <div class="max-w-md w-82 mt-6 bg-gray-300 shadow-lg rounded-xl p-6">
           <div class="flex flex-col ">
