@@ -93,32 +93,24 @@
         <button type="submit" class=" mt-5 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ">Create Post</button>
     </form>
 </div>
-<script src="vendors/sweetalert2/dist/sweetalert2.min.js"></script><!-- sweet alert -->
-{{-- @if ($message = Session::get('success')) --}}
+@if ($message = Session::get('success'))
 {{-- <x-alert-success/> --}}
-{{-- <script>
-    Swal.fire(
-    'Good job!',
-    'You clicked the button!',
-    'success'
-    );
-</script>;  --}}
-        {{-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>{{ $message }}</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div> --}}
-    {{-- @endif --}}
-    @if ($message = Session::get('success'))
-    {{-- <x-alert-success/> --}}
-    <script>
-        Swal.fire(
-            'Good job!',
-            'You clicked the button!',
-            'success'
-        );
-    </script>
-@endif
-
+<script>
+    // Swal.fire(
+    //     'Good job!',
+    //     '{{$message}} !',
+    //     'success'
+    //     );
+        Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '{{$message}} !',
+        showConfirmButton: false,
+        timer: 1500
+        })
+        
+    </script> 
+    @endif
 @endsection
 
 @section('script')
@@ -142,7 +134,11 @@
             div.appendChild(img);
             images.appendChild(div);
         };
+
+
         
     }
+
+
     </script>
 @endsection

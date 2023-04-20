@@ -7,6 +7,8 @@
     <title>@yield('title','home')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @include('Home.layouts.header')   
+    {{-- <script src="vendors/sweetalert2/dist/sweetalert2.min.js"></script><!-- sweet alert --> --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body class="flex flex-col">
     
