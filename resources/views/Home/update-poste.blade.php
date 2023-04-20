@@ -31,7 +31,6 @@
                     @endforeach
                 </select>
             </div>
-        
             <div>
                 
                 <textarea name="description" id="description" cols="30" rows="10" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Write your thoughts here...">{{ $post->description }}</textarea>
@@ -50,7 +49,7 @@
                     </li>
                 </ul>
             </div>
-            </div>
+
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="images"></div>
             
             <div id="image-container" class="flex flex-wrap gap-2">
@@ -60,8 +59,8 @@
                     <button type="button" value="{{$image->id}}" class="deleteImage text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="defaultModal">
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
-                <img src="{{ asset('image_post/'.$image->filename) }}" alt="Image" class="w-24 h-24 object-cover rounded-lg">
-            </div>
+                    <img src="{{ asset('image_post/'.$image->filename) }}" alt="Image" class="w-24 h-24 object-cover rounded-lg">
+                </div>
             @endforeach
             </div>
 
@@ -75,6 +74,8 @@
                     <input id="dropzone-file"type="file" name="images[]" onchange="onImageChange(event)" multiple class="hidden" />
                 </label>
             </div> 
+        <button type="submit" class=" mt-5 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ">Update Post</button>
+
         </form>
         <br>
         <br>
@@ -82,28 +83,23 @@
         <form action="{{ route('post.destroy', $post->id) }}" method="post">
             @csrf
             @method('DELETE')
-            <input type="hidden" name="post_id" value="{{ $post->id }}">
-            <button type="submit">Delete</button>
+            <input type="hidden" name="post_id" class="post_id" value="{{ $post->id }}">
+            <button type="submit" class=" focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
         </form>
-    <div>  
-    @if ($message = Session::get('success'))
-{{-- <x-alert-success/> --}}
-    <script>
-        Swal.fire(
-            'Good job!',
-            '{{$message}} !',
-            'success'
-            );
-            
-        </script> 
-        @endif
-      
+        {{-- <button class="btnDelete focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"> click</button> --}}
+</div>
+
+
 @endsection
         
         
 @section('script')
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script>
+
+
+
+
+
         $(document).ready(function(){
     $.ajaxSetup({
         headers: {

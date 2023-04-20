@@ -169,6 +169,7 @@ class PostController extends Controller
         
         $post->save();
 
+       if($request->file('images')){
         $images = $request->file('images');
         foreach ($images as $image) {
             $filename = $image->getClientOriginalName();
@@ -181,8 +182,9 @@ class PostController extends Controller
                 'post_id'=> $post->id,
             ]);
         }
-    
-        return redirect()->route('post.edit', $post->id)->with('success', 'Post updated successfully!');
+       }
+        return redirect()->back()->with('success', 'Post updated successfully!');
+        // return redirect()->route('post.edit', $post->id)->with('success', 'Post updated successfully!');
     }
 
     /**
@@ -193,15 +195,20 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+        // dd($id);
         $post = Post::find($id); 
 
         if (!$post) {
-            return response()->json(['error' => 'Post not found'], 404); 
+            return redirect()->back()->with('error' , 'Post not found');
+        }
+        try{
+            $post->delete();
+            return redirect()->route('home')->with('success', 'Post deleted successfully!');
+        }catch(Exception $e){
+            return redirect()->back()->with('error', $e->getMessage());
         }
         
-        $post->delete();
-
-        return response()->json(['message' => 'Post deleted successfully']); 
+        // return response()->json(['message' => 'Post deleted successfully']); 
     }
 
     public function destroyImage(Request $request)

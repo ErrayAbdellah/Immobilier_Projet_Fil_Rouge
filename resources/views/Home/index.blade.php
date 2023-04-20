@@ -20,6 +20,17 @@
   @include('Home.layouts.footerPage')
   @include('Home.layouts.footer')
   @yield('script')
-
+  @if ($message = Session::get('success'))
+  {{-- <x-alert-success/> --}}
+      <script>
+              Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: '{{$message}} ',
+                  showConfirmButton: false,
+                  timer: 1500
+              })
+      </script> 
+      @endif
 </body>
 </html>
