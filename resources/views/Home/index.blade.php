@@ -11,10 +11,10 @@
 <body class="flex flex-col">
     
   @include('Home.layouts.navBar')
-  
+ 
   
   @yield('content')
-
+  
   @include('Home.layouts.footerPage')
   @include('Home.layouts.footer')
   @yield('script')

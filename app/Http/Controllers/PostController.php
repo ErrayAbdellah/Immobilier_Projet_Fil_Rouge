@@ -48,59 +48,60 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|',
-            'description' => 'required',
-            'post_type' => 'required',
-            'Bedrooms' => 'required',
-            'space' => 'required',
-            'price' => 'required',
-            'buyRent' => 'required',
-            // 'adresse' => 'required',
-            'outdoor_features' => 'array', 
+        // $validatedData = $request->validate([
+        //     'title' => 'required|',
+        //     'description' => 'required',
+        //     'post_type' => 'required',
+        //     'Bedrooms' => 'required',
+        //     'space' => 'required',
+        //     'price' => 'required',
+        //     'buyRent' => 'required',
+        //     // 'adresse' => 'required',
+        //     'outdoor_features' => 'array', 
             
-        ]);
-            // dd($request->buyRent);
+        // ]);
+        //     // dd($request->buyRent);
         
-        $post = new Post();
+        // $post = new Post();
         
-        $post->title = $validatedData['title'];
-        $post->description = $validatedData['description'];
-        $post->Bedrooms = $validatedData['Bedrooms'];
-        $post->space = $validatedData['space'];
-        $post->price = $validatedData['price'];
-        $post->type_id = $validatedData['post_type'];
-        $post->buyOrRent = $validatedData['buyRent'];
-        // $post->adresse = $validatedData['adresse'];
-        $post->user_id =1;
-        $post->save();
+        // $post->title = $validatedData['title'];
+        // $post->description = $validatedData['description'];
+        // $post->Bedrooms = $validatedData['Bedrooms'];
+        // $post->space = $validatedData['space'];
+        // $post->price = $validatedData['price'];
+        // $post->type_id = $validatedData['post_type'];
+        // $post->buyOrRent = $validatedData['buyRent'];
+        // // $post->adresse = $validatedData['adresse'];
+        // $post->user_id =1;
+        // $post->save();
         
-        $post->outdoorfeature()->sync($validatedData['outdoor_features']);
+        // $post->outdoorfeature()->sync($validatedData['outdoor_features']);
         
 
         
         
-        $images = $request->file('images');
-        foreach ($images as $image) {
-            $extension = $image->getClientOriginalExtension();
-            $filename = time() . '_' . Str::random(10) . '.' . $extension;
-            $path = $image->store('images'); 
+        // $images = $request->file('images');
+        // foreach ($images as $image) {
+        //     $extension = $image->getClientOriginalExtension();
+        //     $filename = time() . '_' . Str::random(10) . '.' . $extension;
+        //     $path = $image->store('images'); 
             
-            try{
-                Image::create([
-                    'filename' => $filename,
-                    'path' => $path,
-                    'post_id'=> $post->id,
-                ]);
-                $image->move(public_path('image_post'),$filename);
+        //     try{
+        //         Image::create([
+        //             'filename' => $filename,
+        //             'path' => $path,
+        //             'post_id'=> $post->id,
+        //         ]);
+        //         $image->move(public_path('image_post'),$filename);
 
-            }catch(Exception $e){
-                return back()->withError('Failed to upload images.')->withInput();
-            }
-        }
+        //     }catch(Exception $e){
+        //         return back()->withError('Failed to upload images.')->withInput();
+        //     }
+        // }
 
-        return redirect()->route('post.create')->with('success', 'Post created successfully!');
-        // return redirect()->back()->with('success', 'Images uploaded successfully.');
+        // return redirect()->route('post.create')->with('success', 'Post created successfully!');
+        // // return redirect()->back()->with('success', 'Images uploaded successfully.');
+        return redirect()->back()->with('success', 'Images uploaded successfully.');
         
     }
 

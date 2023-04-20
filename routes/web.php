@@ -55,12 +55,12 @@ Route::group([
 Route::group([
     // 'middleware'=>'isCustomer'
 ],function(){
+    Route::resource('comment',CommentController::class);
     Route::get('/home',[HomeController::class,'index'])->name('home');
     Route::get('/product',[HomeController::class,'product'])->name('product');
     Route::post('/filterPost',[HomeController::class,'filterPost'])->name('filterPost');
     Route::get('/buypage/{id}',[HomeController::class,'createBuypage'])->name('buyPage');
     
-    Route::resource('comment',CommentController::class);
 });
 
 

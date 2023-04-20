@@ -131,6 +131,24 @@
                             @foreach ($users as $user)
                             @if ($comment->user_id == $user->id)
                                 <article class="sm:w-[40rem] bg-gray-200 rounded-2xl p-2 mt-4 mb-4 ">
+                                    <div class="flex justify-end px-4 pt-4">
+                                        <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                                            <span class="sr-only">Open dropdown</span>
+                                            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+                                        </button>
+                                        <!-- Dropdown menu -->
+                                        <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                            <ul class="py-2" aria-labelledby="dropdownButton">
+                                            <li>
+                                                    <form action="{{route('comment.destroy',$comment->id)}}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input type="submit" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" value="Delete" /a>
+                                                    </form>
+                                            </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                     <div class="flex items-center mt-6 space-x-4">
                                         <img class="w-auto text-sm h-10 rounded-full" src="https://images.pexels.com/photos/678783/pexels-photo-678783.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
                                         <div class="space-y-1 font-medium">
@@ -147,9 +165,6 @@
                             @endforeach
                         @endforeach
                     </div>
-                
-            
-
                     {{-- comment --}}
                     
                     <form action="{{route('comment.store')}}" method="POST" class="sm:w-[40rem]" >
@@ -173,6 +188,7 @@
         </div>
     </div>
 
+<script src="vendors/sweetalert2/dist/sweetalert2.min.js"></script><!-- sweet alert -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 
 </body>
