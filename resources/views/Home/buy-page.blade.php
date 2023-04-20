@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" /> --}}
+    @extends('Home.index')
 
+    @section('content')
 <style>
 .scrollComement{
     
@@ -36,23 +38,23 @@
   background-color: #007bff;
 }
 </style>
-</head>
-<body>
-    
-    <div class="container mx-auto">
-        <div class="">
-            <div class="flex flex-col md:flex-row md:items-center ">
-                <div class="mt-4 md:mt-0 md:w-1/2 md:pl-8">
-                    <h2 class="text-xl font-bold text-gray-800 mb-2">{{$post->title}}</h2>
-                    <p class="text-gray-500">{{$post->description}}</p>
-                    <p class="text-lg font-semibold text-gray-700 mb-4">{{$post->price}} MAD</p>                    
-                    {{-- description --}}
-                    <div class="m-4 mt-7">
-                        
-                    </div>
-                </div>
+{{-- </head> 
+<body>--}}
+    {{-- <div class="container mx-auto mt-24" >
+        <div class="grid grid-cols-6 gap-4">
+            <div class="col-start-2 col-span-4 ...">01</div>
+            <div class="col-start-1 col-end-3 ...">02</div>
+            <div class="col-end-7 col-span-2 ...">03</div>
+            <div class="col-start-1 col-end-7 ...">04</div>
+          </div> --}}
+        <div class="mt-24 flex justify-center w-screen">
+            <div>
+
+                <div class="sm:grid sm:grid-cols-3 sm:gap-4 w-screen flex flex-wrap">
+                    {{-- <div class="flex flex-col md:flex-row md:items-center "> --}}
+                
                 {{-- images --}}
-                <div class="md:w-2/5 h-80">
+                <div class="col-start-2 col-span-4 w-3/4 md:w-2/5 h-80">
                     {{-- <img src="https://via.placeholder.com/350" alt="Product Image" class="w-full object-cover object-center"> --}}
                     
                     <div id="controls-carousel" class="relative w-full" data-carousel="static">
@@ -84,43 +86,62 @@
 
                     {{-- *************************************************** --}}
                 </div>
-            </div>            
-            
-            
-          <div class="flex justify-around flex-wrap ">
-           
-            <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow ">
-                <div>
-                    <h1>Bedrooms</h1>
-                    <h5 class="w-24 p-2 mt-2 text-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">{{$post->Bedrooms}}</h5>
-                </div>
-                <div>
-                    <h1>type</h1>
-                    <h5 class="w-24 p-2 mt-2 text-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">{{$post->type->name}}</h5>
-                </div>
-                <div>
-                    <h1>Outdoor Features</h1>
-                <div class="flex justify-around flex-wrap">
-                    @foreach ($post->outdoorfeature as $item)
-                    <h5 class="w-24 p-2 mt-2 text-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">{{$item->name}}</h5>
-                    @endforeach
-                </div>
-                </div>
-                <div>
-                    <h1>Space</h1>
-                    <h5 class="w-24 p-2 mt-2 text-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">{{$post->space}}m²</h5>
-                </div>
-            </div>
 
-                <div class="flex flex-col items-center pb-10 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow  ">
+                 {{-- home --}}
+                    
+                 <div class="col-start-1 col-end-3  md:w-1/2 md:pl-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">{{$post->title}}</h2>
+                    <p class="text-gray-500">{{$post->description}}</p>
+                    <p class="text-lg font-semibold text-gray-700 mb-4">{{$post->price}} MAD</p>                    
+                    {{-- description --}}
+                    <div class="m-4 mt-7">
+                        
+                    </div>
+                </div>
+                
+                {{-- User of post --}}
+                <div class="col-end-7 col-span-2 flex flex-col items-center pb-10 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow  ">
                     <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ asset('image_post/'.$image->filename) }}" alt="Bonnie image"/>
                     <h5 class="mb-1 text-xl font-medium text-gray-900">Bonnie Green</h5>
                     <span class="text-sm text-gray-500">Visual Designer</span>
                 </div>
-            
-          </div>
+                {{-- </div> --}}
                 
-           
+                
+                {{-- <div class="flex justify-around flex-wrap "> --}}
+
+                   
+
+                
+                <div class="col-start-1 col-end-7 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow ">
+                    <div>
+                        <h1>Bedrooms</h1>
+                        <h5 class="w-24 p-2 mt-2 text-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">{{$post->Bedrooms}}</h5>
+                    </div>
+                    <div>
+                        <h1>type</h1>
+                        <h5 class="w-24 p-2 mt-2 text-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">{{$post->type->name}}</h5>
+                    </div>
+                    <div>
+                        <h1>Outdoor Features</h1>
+                    <div class="flex justify-around flex-wrap">
+                        @foreach ($post->outdoorfeature as $item)
+                        <h5 class="w-24 p-2 mt-2 text-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">{{$item->name}}</h5>
+                        @endforeach
+                    </div>
+                    </div>
+                    <div>
+                        <h1>Space</h1>
+                        <h5 class="w-24 p-2 mt-2 text-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">{{$post->space}}m²</h5>
+                    </div>
+                </div>
+                
+                
+               
+            
+            </div>
+                
+            
             {{-- show comments --}}
             
             <div class=" flex justify-center flex-wrap ">
@@ -130,12 +151,12 @@
                         @foreach ($comments as $comment) 
                             @foreach ($users as $user)
                             @if ($comment->user_id == $user->id)
-                                <article class="sm:w-[40rem] bg-gray-200 rounded-2xl p-2 mt-4 mb-4 ">
-                                    <div class="flex justify-end px-4 pt-4">
-                                        <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
-                                            <span class="sr-only">Open dropdown</span>
-                                            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
-                                        </button>
+                            <article class="sm:w-[40rem] bg-gray-200 rounded-2xl p-2 mt-4 mb-4 ">
+                                <div class="flex justify-end px-4 pt-4">
+                                    <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                                        <span class="sr-only">Open dropdown</span>
+                                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+                                    </button>
                                         <!-- Dropdown menu -->
                                         <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                                             <ul class="py-2" aria-labelledby="dropdownButton">
@@ -187,9 +208,11 @@
             </div>
         </div>
     </div>
+</div>
 
-<script src="vendors/sweetalert2/dist/sweetalert2.min.js"></script><!-- sweet alert -->
+    @endsection
+{{-- <script src="vendors/sweetalert2/dist/sweetalert2.min.js"></script><!-- sweet alert -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 
 </body>
-</html>
+</html> --}}
