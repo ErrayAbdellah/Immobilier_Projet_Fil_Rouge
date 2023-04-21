@@ -35,7 +35,7 @@ background-color: #007bff;
 {{-- @dd($post->user->profile_photo_path); --}}
 <div>
     {{-- images --}}
-    <div class="mr-auto ml-auto mb-5 col-start-2 col-span-4 w-3/4 md:w-2/5 h-80">                    
+    <div class="mr-auto ml-auto sm:mb-8 col-start-2 col-span-4 w-3/4 md:w-2/5 h-80">                    
         <div id="controls-carousel" class="relative w-full" data-carousel="static">
             <!-- Carousel wrapper -->
             <div class="relative h-80 overflow-hidden rounded-lg">
@@ -49,13 +49,13 @@ background-color: #007bff;
                 <!-- ***************************** -->
             </div>
             <!-- Slider controls -->
-            <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+            <button type="button" class="absolute top-0 left-0 z-20 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
                 <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
                     <svg aria-hidden="true" class="w-6 h-6 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span class="sr-only">Previous</span>
                 </span>
             </button>
-            <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+            <button type="button" class="absolute top-0 right-0 z-20 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
                 <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
                     <svg aria-hidden="true" class="w-6 h-6 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     <span class="sr-only">Next</span>
@@ -71,7 +71,7 @@ background-color: #007bff;
         
             {{-- home --}}
             
-            <div class="col-start-1 col-end-3  md:w-1/2 md:pl-8">
+            <div class="col-start-1 bg-neutral-300 col-end-3  md:w-1/2 md:pl-8">
                 <h2 class="text-xl font-bold text-gray-800 mb-2">{{$post->title}}</h2>
                 <p class="text-gray-500">{{$post->description}}</p>
                 <p class="text-lg font-semibold text-gray-700 mb-4">{{$post->price}} MAD</p>                    
@@ -151,8 +151,8 @@ background-color: #007bff;
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="flex items-center mt-6 space-x-4">
-                                            <img class="w-auto text-sm h-10 rounded-full" src="https://images.pexels.com/photos/678783/pexels-photo-678783.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                                        <div class="flex items-center mt-2 space-x-4">
+                                            <img class="w-auto text-sm h-10 rounded-full" src="{{ $user->profile_photo_path }}" alt="{{ $user->name }}">
                                             <div class="space-y-1 font-medium">
                                                 <p>{{$user->name}}</p>
                                             </div>
