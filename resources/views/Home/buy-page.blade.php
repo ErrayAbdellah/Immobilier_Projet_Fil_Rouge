@@ -133,23 +133,37 @@ background-color: #007bff;
                             @foreach ($users as $user)
                                 @if ($comment->user_id == $user->id)
                                     <article class="sm:w-[40rem] bg-gray-200 rounded-2xl p-2 mt-4 mb-4 ">
-                                        <div class="flex justify-end px-4 pt-4">
-                                            <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                                        <div class="flex justify-end px-4 ">
+                                            <h1>{{ $comment->id }}</h1>
+                                            <form action="{{route('comment.destroy', $comment->id)}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <svg class="svg-icon w-7 text-red-600" viewBox="0 0 20 20">
+                                                    <path d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306">
+                                                        <input type="submit" class="w-full block px-4 py-2 text-sm text-red-400  hover:bg-gray-100" value="Delete" />
+                                                    </path>
+                                                    
+                                                </svg>
+                                            </form>
+                                            {{-- <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
                                                 <span class="sr-only">Open dropdown</span>
                                                 <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
-                                            </button>
+                                            </button> --}}
                                             <!-- Dropdown menu -->
-                                            <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                            {{-- <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                                <h1>{{ $comment->id }}</h1>
                                                 <ul class="py-2" aria-labelledby="dropdownButton">
-                                                <li>
-                                                    <form action="{{route('comment.destroy',$comment->id)}}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <input type="submit" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" value="Delete" /a>
-                                                    </form>
-                                                </li>
+                                                    <li>
+                                                        <input type="submit" class="w-full block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100" value="Delete" />
+                                                    </li>
+                                                    <li>
+                                                        <h1>{{ $comment->id }}</h1>
+                                                    </li>
+                                                    <li>
+                                                        
+                                                    </li>
                                                 </ul>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="flex items-center mt-2 space-x-4">
                                             <img class="w-auto text-sm h-10 rounded-full" src="{{ $user->profile_photo_path }}" alt="{{ $user->name }}">

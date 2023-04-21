@@ -3,7 +3,6 @@
 @section('content')
 <style>
   .scrollComement{
-    
     ::-webkit-scrollbar-track{
             background: #ffffff6b
         }
@@ -58,7 +57,7 @@
 
 
 <!-- <main class="felx justify-around w-100"> -->
-<main class="flex justify-around flex-wrap h-100 mt-7 mb-24">
+<main class="flex justify-around flex-wrap h-100 mt-7 mb-24 ">
     <section class="w-72 rounded-lg h-96 bg-gray-400 mt-4">
         <div class="rotate-0 hover:rotate-3 w-72 rounded-lg h-96 transition-all bg-gray-100  p-6">
             <div class="flex justify-end">
@@ -167,7 +166,7 @@
 </main>
 <!-- product -->
 <section>
-  <div id="first-collection" class="bg-white shadow-md rounded-md p-4">
+  <div id="first-collection" class="bg-white shadow-md rounded-md p-4 scrollComement">
     <div class="flex justify-between items-center mb-4">
       <h5 class="text-lg font-bold text-gray-900">For Buy</h5>
       <span class="text-gray-500 text-sm">Sign in for a more personalized experience.</span>
@@ -175,41 +174,22 @@
         more 
       </button>
     </div>
-    {{-- @dd($posts) --}}
-    {{-- <h1>{{ $post->title }}</h1> --}}
-    <div class=" scroll-container h-auto rounded-md flex space-x-2 overflow-x-auto p-6 mx-2 scrollComement">
-        @foreach($posts as $post)
+    <div class="h-auto rounded-md flex space-x-2 overflow-x-auto p-6 mx-2">
+      @for ($i = 0 ; $i < 4 ; $i ++)
+        
+      {{-- @endfor --}}
+        {{-- @foreach($posts as $post) --}}
         <div class="max-w-md w-82 mt-6 bg-gray-300 shadow-lg rounded-xl p-6">
           <div class="flex flex-col ">
             <div class="">
-              
-              <div id="controls-carousel" class="relative w-full" data-carousel="static">
                 <!-- Carousel wrapper -->
-                <div class="relative h-56 overflow-hidden rounded-lg">
+                <div class="relative h-56  rounded-lg">
                   <div class=" h-62 w-full mb-3">
-                    @foreach($post->images as $image)
                       <div class="duration-700 mb-4" data-carousel-item>
-                        {{-- <h1>{{$image->filename}}</h1>  --}}
-                        <img src="{{ asset('image_post/'.$image->filename) }}" alt="Just a flower" class="  object-fill  rounded-2xl">
+                        <img src="{{ asset('image_post/'.$posts[$i]->images[0]->filename) }}" alt="Just a flower" class="  object-fill  rounded-2xl">
                       </div>
-                    @endforeach
                   </div>
                 </div>
-                <!-- Slider controls -->
-                {{-- <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
-                        <svg aria-hidden="true" class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                        <span class="sr-only">Previous</span>
-                    </span>
-                </button>
-                <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
-                        <svg aria-hidden="true" class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        <span class="sr-only">Next</span>
-                    </span>
-                </button> --}}
-            </div>
-            
               <div class="flex-auto justify-evenly">
                 <div class="flex flex-wrap ">
                   <div class="w-full flex-none text-sm flex items-center text-gray-600">
@@ -220,52 +200,24 @@
                   </div>
                   <div class="flex items-center justify-between w-80 ">
                     <h2 class="text-lg mr-auto cursor-pointer text-gray-900 hover:text-purple-500 truncate ">
-                     {{ $post->title }}
+                     {{ $posts[$i]->title }}
                     </h2>
                   </div>
                 </div>
-                <div class="text-xl text-gray-800 font-semibold mt-1">{{ $post->price }}MAD</div>
+                <div class="text-xl text-gray-800 font-semibold mt-1">{{ $posts[$i]->price }}MAD</div>
               
                 <div class="flex space-x-2 text-sm font-medium justify-between">
-                  <button onclick="window.location.href='{{route('buyPage',['id'=>$post->id])}}';" class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-purple-500 px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-purple-600 ">
+                  <button onclick="window.location.href='{{route('buyPage',['id'=>$posts[$i]->id])}}';" class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-purple-500 px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-purple-600 ">
                     <span>Review</span>
-                  </button>
-                  {{-- <div class="flex flex-col top-0 right-0 p-3">
-                    <button class="transition ease-in duration-300 bg-gray-100  hover:text-blue-700 shadow hover:shadow-md text-gray-500 rounded-full w-8 h-8 text-center p-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                      </svg>
-                    </button>
-                  </div> --}}
+                  </button> 
                 </div>
               </div>
             </div>
           </div>
         </div>
-        @endforeach
+        @endfor
       </div>
     </div>
   
 </section>
-
-
-  
-</section>
-<!-- end product -->
-
-<style>
-    <style>
-  .scroll-container::-webkit-scrollbar {
-    width: 0.5rem;
-  }
-
-  .scroll-container::-webkit-scrollbar-thumb {
-    background-color: rgba(246, 211, 14, 0.5);
-    border-radius: 0.25rem;
-  }
-
-  .scroll-container::-webkit-scrollbar-track {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 0.25rem;
-  }
-</style>
 @endsection
