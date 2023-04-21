@@ -72,8 +72,8 @@ class HomeController extends Controller
 
     public function createBuypage(Request $request, $id){
 
-        $post = Post::with('type','outdoorfeature')->where('id','=',$id)->get()->first();
-        
+        $post = Post::with('type','outdoorfeature','user')->where('id','=',$id)->get()->first();
+        // dd($post);
         $images = Image::with('post')->where('post_id','=',$id)->get();
         $comments = Comment::with('post')->where('post_id','=',$id)->get();
         $users = User::with('comment')->get();
