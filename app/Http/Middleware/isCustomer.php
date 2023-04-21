@@ -19,8 +19,7 @@ class isCustomer
     {
         $user = auth()->user();
         $role = User::with(['role'])->find($user->id);
-        if($role->role->name === 'Customer'){
-            
+        if($role->role->name === 'Customer' ){            
             return $next($request);
         }else{
             return response()->json([

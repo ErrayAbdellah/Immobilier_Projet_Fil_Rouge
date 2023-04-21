@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 class isAdmin
 {
@@ -23,10 +25,7 @@ class isAdmin
             
             return $next($request);
         }else{
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Unauthorized',
-            ], 401);
+            return Redirect::to('/');
         }
     }
 }

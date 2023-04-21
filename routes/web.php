@@ -21,18 +21,15 @@ use App\Http\Controllers\ReplyController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'middleware'=>'isAdmin'
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
-        // return redirect('dashboard');
     });
    
 
@@ -45,6 +42,7 @@ Route::group([
     config('jetstream.auth_session'),
     'verified',
     'prefix' => 'admin',
+    'middleware'=> 'isAdmin'
 ],function(){
     Route::get('/users',[AdminController::class ,'usersShow'])->name('users');
     Route::post('/users/changeRole',[AdminController::class ,'changeRole'])->name('changeRole');
@@ -52,16 +50,19 @@ Route::group([
 
 });
 
+Route::get('/',[HomeController::class,'index'])->name('home');
 Route::group([
+    config('jetstream.auth_session'),
     // 'middleware'=>'isCustomer'
+    'middleware'=>['auth']
 ],function(){
+    Route::post('post/destroyImage',[PostController::class,'destroyImage']);
+    Route::resource('post',PostController::class);
     Route::resource('comment',CommentController::class);
-    Route::get('/home',[HomeController::class,'index'])->name('home');
-    Route::get('/product',[HomeController::class,'product'])->name('product');
-    Route::post('/filterPost',[HomeController::class,'filterPost'])->name('filterPost');
-    Route::get('/buypage/{id}',[HomeController::class,'createBuypage'])->name('buyPage');
-    
 });
+Route::get('/product',[HomeController::class,'product'])->name('product');
+Route::post('/filterPost',[HomeController::class,'filterPost'])->name('filterPost');
+Route::get('/buypage/{id}',[HomeController::class,'createBuypage'])->name('buyPage');
 
 
 Route::get('/reply', [ReplyController::class,'index']);
@@ -69,5 +70,4 @@ Route::get('/reply', [ReplyController::class,'index']);
 
 
 
-Route::post('post/destroyImage',[PostController::class,'destroyImage']);
-Route::resource('post',PostController::class);
+

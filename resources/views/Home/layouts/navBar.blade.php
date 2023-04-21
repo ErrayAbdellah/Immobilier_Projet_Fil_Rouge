@@ -117,14 +117,18 @@
           <a href="{{route('product')}}" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('product')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0">Product</a>
         </li>
         <li>
-          <a href="#" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('#')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0">Services</a>
-        </li>
-        <li>
           <a href="#" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('#')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0">About</a>
         </li>
         <li>
           <a href="pages/contactUs.html" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Contact</a>
         </li>
+       @if (Auth::user())
+          @if (Auth::user()->role_id == 2)
+          <li>
+            <a href="#" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('#')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0">Dashboard</a>
+          </li>
+          @endif
+       @endif
       </ul>
     </div>
     </div>
