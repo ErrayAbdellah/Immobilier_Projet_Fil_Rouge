@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('phone');
             // $table->string('city');
             $table->string('email')->unique();
-            $table->string('dateBir');
+            // $table->string('dateBir');
             $table->foreignId('role_id')->default(1)->constrained('roles')->onDelete('cascade');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

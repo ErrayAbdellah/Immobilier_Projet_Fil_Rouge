@@ -56,48 +56,49 @@ class PostController extends Controller
             'space' => 'required',
             'price' => 'required',
             'buyRent' => 'required',
-            // 'adresse' => 'required',
+            'adresse' => 'required',
             'outdoor_features' => 'array', 
             
         ]);
             // dd($request->buyRent);
         
         $post = new Post();
-        
-        $post->title = $validatedData['title'];
-        $post->description = $validatedData['description'];
-        $post->Bedrooms = $validatedData['Bedrooms'];
-        $post->space = $validatedData['space'];
-        $post->price = $validatedData['price'];
-        $post->type_id = $validatedData['post_type'];
-        $post->buyOrRent = $validatedData['buyRent'];
-        // $post->adresse = $validatedData['adresse'];
-        $post->user_id =1;
-        $post->save();
-        
-        $post->outdoorfeature()->sync($validatedData['outdoor_features']);
-        
-
-        
-        
-        $images = $request->file('images');
-        foreach ($images as $image) {
-            $extension = $image->getClientOriginalExtension();
-            $filename = time() . '_' . Str::random(10) . '.' . $extension;
-            $path = $image->store('images'); 
+        try{
+            $post->title = $validatedData['title'];
+            $post->description = $validatedData['description'];
+            $post->Bedrooms = $validatedData['Bedrooms'];
+            $post->space = $validatedData['space'];
+            $post->price = $validatedData['price'];
+            $post->type_id = $validatedData['post_type'];
+            $post->buyOrRent = $validatedData['buyRent'];
+            $post->adresse = $validatedData['adresse'];
+            $post->user_id =1;
+            $post->save();
             
-            try{
-                Image::create([
-                    'filename' => $filename,
-                    'path' => $path,
-                    'post_id'=> $post->id,
-                ]);
-                $image->move(public_path('image_post'),$filename);
-                return redirect()->back()->with('success', 'Post created successfully!');
+            $post->outdoorfeature()->sync($validatedData['outdoor_features']);
+            
 
-            }catch(Exception $e){
-                return back()->withError('Failed to upload images.')->withInput();
-            }
+            
+            
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $extension = $image->getClientOriginalExtension();
+                $filename = time() . '_' . Str::random(10) . '.' . $extension;
+                $path = $image->store('images'); 
+                
+                
+                    Image::create([
+                        'filename' => $filename,
+                        'path' => $path,
+                        'post_id'=> $post->id,
+                    ]);
+                    $image->move(public_path('image_post'),$filename);
+                    
+                    
+                }
+            return redirect()->back()->with('success', 'Post created successfully!');
+        }catch(Exception $e){
+            return back()->withError('Failed to upload images.')->withInput();
         }
         
     }

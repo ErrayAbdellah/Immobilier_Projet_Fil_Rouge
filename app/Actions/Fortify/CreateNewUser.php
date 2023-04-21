@@ -24,7 +24,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-            'dateBirthday'=>['required', 'string', 'max:255'],
+            'dateBirthday'=>['required', 'max:255'],
             'phone' => ['required', 'regex:/\d{10,14}/'],
         ])->validate();
             // dd($input['dateBirthday']);

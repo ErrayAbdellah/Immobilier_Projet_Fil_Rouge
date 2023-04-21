@@ -55,7 +55,11 @@
                 <option value="{{ $type->id }}">{{ $type->name }}</option>
                 @endforeach
                 </select>
-            </div> --}}
+            </div> --}} 
+            <div>
+                <label for="adresse" class="block mb-2 text-sm font-medium text-gray-900">adresse</label>
+                <input type="text" name="adresse" class="block w-64 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 ">
+            </div>
         </div>
         
         <div class="sm:ml-16">
