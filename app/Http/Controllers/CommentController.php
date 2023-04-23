@@ -120,7 +120,7 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         // dd($comment);
-        dd($comment->id);
+        dd($comment->post_id);
         $comment = Comment::find($comment->id); 
         if (!$comment) {
             return response()->json(['error' => 'comment not found'], 404); 
@@ -128,7 +128,17 @@ class CommentController extends Controller
         
         $comment->delete();
 
+        $post = Post::with('type','outdoorfeature','user')->where('id','=',$comment->post_id)->get()->first();
+        
+        $images = Image::with('post')->where('post_id','=',$comment->post_id)->get();
+        $comments = Comment::with('post')->where('post_id','=',$comment->post_id)->get();
+        $users = User::with('comment')->get();
+        
+        $outdoorFeatures = Outdoorfeature::all();
+
+        return redirect()->route('Home.buy-page',compact('post','images','outdoorFeatures','comments','users'))->with('success', 'Comment deleted successfully!');
+
         // return ``;
-        return response()->json(['message' => 'comment deleted successfully']); 
+        // return response()->json(['message' => 'comment deleted successfully']); 
     }
 }

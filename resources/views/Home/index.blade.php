@@ -21,7 +21,6 @@
   @include('Home.layouts.footer')
   @yield('script')
   @if ($message = Session::get('success'))
-  {{-- <x-alert-success/> --}}
       <script>
               Swal.fire({
                   position: 'top-end',

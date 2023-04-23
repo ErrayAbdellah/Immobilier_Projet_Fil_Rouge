@@ -21,7 +21,7 @@
             <div class="text-gray-500 font-normal text-sm mb-1.5 ">New message from <span class="font-semibold text-gray-900">Bonnie Green</span>: "Hey, what's up? All set for the presentation?"</div>
             <div class="text-xs font-medium text-primary-700 ">a few moments ago</div>
         </div>
-    </a>   
+    </a>
     </div>
     <a href="#" class="block py-2 text-base font-normal text-center text-gray-900 bg-gray-50 hover:bg-gray-100 ">
         <div class="inline-flex items-center ">
