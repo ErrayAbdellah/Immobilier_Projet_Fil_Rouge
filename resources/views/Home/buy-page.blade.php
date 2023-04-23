@@ -31,7 +31,7 @@
         }
     </style>
 
-    <div class="mt-24 flex justify-center w-screen bg-slate-100">
+    <div class="pt-24 flex justify-center w-screen bg-slate-100">
         {{-- @dd($post->user->profile_photo_path); --}}
         <div>
             {{-- images --}}
@@ -63,6 +63,7 @@
                     </button>
                 </div>
             </div>
+            
 
             <div class="sm:grid sm:grid-cols-3 sm:gap-4 w-screen flex flex-wrap">
                 {{-- <div class="flex flex-col md:flex-row md:items-center "> --}}
@@ -75,6 +76,11 @@
                     <h2 class="text-xl mt-5 font-bold text-gray-800 mb-2">{{$post->title}}</h2>
                     <p class="text-gray-500">{{$post->description}}</p>
                     <p class="text-lg font-semibold text-gray-700 mb-4">{{$post->price}} MAD</p>
+
+                    <form action="{{ route('postReport',['id'=>$post->id]) }}" method="POST">
+                        @csrf
+                        <input type="submit"  class="bg-red-600 text-white rounded-xl p-2 hover:bg-red-700" value="Report"/>
+                    </form>
                 </div>
             
                 {{-- User of post --}}
@@ -115,6 +121,7 @@
                     </div>
                     </div>
                 </div>
+
         
                 {{-- show comment --}}
                 

@@ -58,6 +58,7 @@ Route::group([
     'middleware'=>['auth']
 ],function(){
     Route::post('post/destroyImage',[PostController::class,'destroyImage']);
+    Route::post('/postReport/{id}',[PostController::class,'postReport'])->name('postReport');
     Route::resource('post',PostController::class);
     Route::resource('comment',CommentController::class);
 });

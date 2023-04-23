@@ -9,11 +9,11 @@
 @section('content')
 
 	<!--Container-->
-	<div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2">
+	<div class="container w-full ">
 
 		<!--Title-->
 		<h1 class="flex items-center font-sans font-bold break-normal text-indigo-500 px-2 py-8 text-xl md:text-2xl">
-			users
+			Posts
 		</h1>
 
 		<!--Card-->
@@ -37,9 +37,6 @@
 						<td>
 							<button class="bg-red-500 rounded-xl text-white p-2 hover:bg-red-600">delete</button>
 						</td>
-
-					<!-- Rest of your data (refer to https://datatables.net/examples/server_side/ for server side processing)-->
-
 					<tr>
 						<td>Donna Snider</td>
 						<td>Customer Support</td>

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('Bedrooms');
             $table->string('description');
             $table->integer('buyOrRent');
+            $table->boolean('report')->default(false);
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('type_id')->constrained('types')->onDelete('cascade');
             $table->timestamps();

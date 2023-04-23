@@ -237,4 +237,17 @@ class PostController extends Controller
         }
         
     }
+
+    public function postReport(Request $request){
+        
+        $post = Post::with('type','outdoorfeature','user','images')->find($request->id);
+        $post->report = 1 ;
+        
+        try{
+             $post->save();
+            return back()->with('success', 'Report is successfully!');
+        }catch(Exception $e){
+            return back()->with('error', $e->getMessage());
+        }
+    }
 }
