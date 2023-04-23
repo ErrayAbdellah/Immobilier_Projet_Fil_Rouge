@@ -47,7 +47,8 @@ Route::group([
     Route::get('/users',[AdminController::class ,'usersShow'])->name('users');
     Route::post('/users/changeRole',[AdminController::class ,'changeRole'])->name('changeRole');
     Route::get('/dashboard', function () { return view('admin.dashboard'); })->name('dashboard');
-
+    Route::get('/posts', function () { return view('admin.posts'); })->name('posts');
+    
 });
 
 Route::get('/',[HomeController::class,'index'])->name('home');
