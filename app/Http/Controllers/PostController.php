@@ -61,7 +61,7 @@ class PostController extends Controller
             'outdoor_features' => 'array', 
             
         ]);
-            // dd($request->buyRent);
+            // dd($request);
         
         $post = new Post();
         try{
@@ -201,13 +201,13 @@ class PostController extends Controller
         $post = Post::find($id); 
 
         if (!$post) {
-            return redirect()->back()->with('error' , 'Post not found');
+            return back()->with('error' , 'Post not found');
         }
         try{
             $post->delete();
-            return redirect()->route('home')->with('success', 'Post deleted successfully!');
+            return back()->with('success', 'Post deleted successfully!');
         }catch(Exception $e){
-            return redirect()->back()->with('error', $e->getMessage());
+            return back()->with('error', $e->getMessage());
         }
         
         // return response()->json(['message' => 'Post deleted successfully']); 
@@ -239,7 +239,7 @@ class PostController extends Controller
     }
 
     public function postReport(Request $request){
-        dd($request->id_cost);
+        // dd($request->id_cost);
         $post = Post::with('type','outdoorfeature','user','images')->find($request->id);
         $post->report = 1 ;
         

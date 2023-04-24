@@ -23,20 +23,31 @@
 			<table id="dataTabelA" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
 				<thead>
 					<tr>
-						<th data-priority="1">title</th>
+						<th data-priority="1">post</th>
 						<th data-priority="2">Costumer</th>
 						<th data-priority="3">post</th>
 						<th data-priority="4"></th>
+						<th data-priority="5"></th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach ($posts as $post)
 						<tr>
-							<td>{{ $post->title }}</td>
+							<td><a href="{{route('buyPage',['id'=>$post->id])}}">Show post</a></td>
 							<td>{{ $post->user->name }}</td>
 							<td>{{ $post->title }}</td>
 							<td>
-								<button class="bg-red-500 rounded-xl text-white p-2 hover:bg-red-600">delete</button>
+								<form action="{{ route('post.destroy', $post->id) }}" method="POST">
+									@csrf
+									@method('DELETE')
+									<input type="submit" class="bg-red-500 rounded-xl text-white p-2 hover:bg-red-600" value="Delete">
+								</form>
+							</td>
+							<td>
+								<form action="" method="POST">
+									@csrf
+									<input type="submit" class="bg-blue-500 rounded-xl text-white p-2 hover:bg-blue-600" value="Pass">
+								</form>
 							</td>
 						</tr>
 					@endforeach

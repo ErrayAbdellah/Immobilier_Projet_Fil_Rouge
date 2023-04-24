@@ -53,6 +53,7 @@ Route::group([
 });
 
 Route::get('/',[HomeController::class,'index'])->name('home');
+
 Route::group([
     config('jetstream.auth_session'),
     // 'middleware'=>'isCustomer'
