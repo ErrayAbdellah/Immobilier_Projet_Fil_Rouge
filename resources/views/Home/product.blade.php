@@ -4,7 +4,7 @@
 
 @include('Home.layouts.sidBareFiltre')
 
- <div class="mt-16 p-4 sm:ml-64">
+ <div class="mt-14 p-4 sm:ml-64">
     <section class="flex content-start flex-wrap ">
               @foreach($posts as $post)
               <div class="max-w-md w-82 mt-6 mb-7 ml-2 mr-auto bg-gray-300 shadow-lg rounded-xl p-6">
@@ -54,5 +54,7 @@
               
         
       </section>
-
+    </div>
+    <div class="sm:ml-60">
+ 
 @endsection
