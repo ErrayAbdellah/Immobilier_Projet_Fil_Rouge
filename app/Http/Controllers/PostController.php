@@ -239,7 +239,7 @@ class PostController extends Controller
     }
 
     public function postReport(Request $request){
-        
+        dd($request->id_cost);
         $post = Post::with('type','outdoorfeature','user','images')->find($request->id);
         $post->report = 1 ;
         

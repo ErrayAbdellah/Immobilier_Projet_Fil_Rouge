@@ -7,7 +7,7 @@
 
 
 @section('content')
-
+{{-- @dd($posts) --}}
 	<!--Container-->
 	<div class="container w-full ">
 
@@ -30,21 +30,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Tiger Nixon</td>
-						<td>System Architect</td>
-						<td>Edinburgh</td>
-						<td>
-							<button class="bg-red-500 rounded-xl text-white p-2 hover:bg-red-600">delete</button>
-						</td>
-					<tr>
-						<td>Donna Snider</td>
-						<td>Customer Support</td>
-						<td>New York</td>
-						<td>
-							<button class="bg-red-500 rounded-xl text-white p-2 hover:bg-red-600">delete</button>
-						</td>
-					</tr>
+					@foreach ($posts as $post)
+						<tr>
+							<td>{{ $post->title }}</td>
+							<td>{{ $post->user->name }}</td>
+							<td>{{ $post->title }}</td>
+							<td>
+								<button class="bg-red-500 rounded-xl text-white p-2 hover:bg-red-600">delete</button>
+							</td>
+						</tr>
+					@endforeach
 				</tbody>
 
 			</table>

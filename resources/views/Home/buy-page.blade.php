@@ -77,7 +77,7 @@
                     <p class="text-gray-500">{{$post->description}}</p>
                     <p class="text-lg font-semibold text-gray-700 mb-4">{{$post->price}} MAD</p>
 
-                    <form action="{{ route('postReport',['id'=>$post->id]) }}" method="POST">
+                    <form action="{{ route('postReport',['id'=>$post->id,'id_cost'=>Auth::user()->id]) }}" method="POST">
                         @csrf
                         <input type="submit"  class="bg-red-600 text-white rounded-xl p-2 hover:bg-red-700" value="Report"/>
                     </form>

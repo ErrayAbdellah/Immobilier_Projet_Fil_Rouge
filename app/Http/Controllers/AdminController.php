@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,5 +31,10 @@ class AdminController extends Controller
             'status'=>'200',
             'message'=>'nady '.$request->id,
         ]);
+    }
+
+    public function postsShow(){
+        $posts = Post::with('user')->where('report','=','1')->get();
+       return view('admin.posts',compact('posts'));
     }
 }

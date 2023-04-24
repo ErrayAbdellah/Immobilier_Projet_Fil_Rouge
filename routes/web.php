@@ -44,10 +44,11 @@ Route::group([
     'prefix' => 'admin',
     'middleware'=> 'isAdmin'
 ],function(){
+    // Route::get('/postsShow',[AdminController::class ,'postsShow'])->name('postsShow');
     Route::get('/users',[AdminController::class ,'usersShow'])->name('users');
     Route::post('/users/changeRole',[AdminController::class ,'changeRole'])->name('changeRole');
     Route::get('/dashboard', function () { return view('admin.dashboard'); })->name('dashboard');
-    Route::get('/posts', function () { return view('admin.posts'); })->name('posts');
+    Route::get('/posts',[AdminController::class ,'postsShow'])->name('posts');
     
 });
 
