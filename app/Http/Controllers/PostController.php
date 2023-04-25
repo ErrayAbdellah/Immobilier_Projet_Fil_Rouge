@@ -61,7 +61,6 @@ class PostController extends Controller
             'outdoor_features' => 'array', 
             
         ]);
-            // dd($request);
         
         $post = new Post();
         try{
@@ -73,8 +72,9 @@ class PostController extends Controller
             $post->type_id = $validatedData['post_type'];
             $post->buyOrRent = $validatedData['buyRent'];
             $post->adresse = $validatedData['adresse'];
-            $post->user_id =1;
+            $post->user_id = Auth::user()->id;
             $post->save();
+            // dd($request,$post);
             
             $post->outdoorfeature()->sync($validatedData['outdoor_features']);
             
@@ -99,6 +99,7 @@ class PostController extends Controller
                 }
             return redirect()->back()->with('success', 'Post created successfully!');
         }catch(Exception $e){
+            dd($e->getMessage());
             return back()->withError('Failed to upload images.')->withInput();
         }
         

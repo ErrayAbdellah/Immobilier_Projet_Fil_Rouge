@@ -42,7 +42,7 @@ Route::group([
     config('jetstream.auth_session'),
     'verified',
     'prefix' => 'admin',
-    'middleware'=> 'isAdmin'
+    // 'middleware'=> 'isAdmin'
 ],function(){
     // Route::get('/postsShow',[AdminController::class ,'postsShow'])->name('postsShow');
     Route::get('/users',[AdminController::class ,'usersShow'])->name('users');

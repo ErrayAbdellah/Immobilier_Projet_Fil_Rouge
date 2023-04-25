@@ -55,6 +55,6 @@
         
       </section>
     </div>
-    <div class="sm:ml-60">
+    <div class="sm:ml-60 mt-auto">
  
 @endsection

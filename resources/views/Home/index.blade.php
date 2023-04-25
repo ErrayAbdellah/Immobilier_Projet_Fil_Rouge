@@ -10,7 +10,7 @@
     {{-- <script src="vendors/sweetalert2/dist/sweetalert2.min.js"></script><!-- sweet alert --> --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
-<body class="flex flex-col">
+<body class="flex flex-col" style="min-height: 100vh">
     
   @include('Home.layouts.navBar')
  
