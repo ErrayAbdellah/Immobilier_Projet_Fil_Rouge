@@ -34,38 +34,40 @@ class HomeController extends Controller
     public function filterPost(Request $request)
     {
         $query = Post::query();
-                
+        
         // Filter by property type
-        if (!is_null($request['Filterpost_type'])) {
-            $query->where('type_id', $request['Filterpost_type']);
+        if ($request->Filterpost_type && $request->Filterpost_type !== 'Choose a type') {
+            
+            $query->where('type_id', $request->Filterpost_type);
         }
         
         // Filter by price range
-        if (!is_null($request['filterMinPrice'])) {
-            $query->where('price', '>=', $request['filterMinPrice']);
+        if ($request->filterMinPrice) {
+            $query->where('price', '>=', $request->filterMinPrice);
         }
-        // dd($query->get());
-        if (!is_null($request['filterMaxPrice'])) {
-            $query->where('price', '<=', $request['filterMaxPrice']);
+        
+        if ($request->filterMaxPrice) {
+            $query->where('price', '<=', $request->filterMaxPrice);
         }
     
         // Filter by number of bedrooms
-        if (!is_null($request['filterNumBedrooms'])) {
-            $query->where('Bedrooms', $request['filterNumBedrooms']);
+        if ($request->filterNumBedrooms) {
+            $query->where('Bedrooms', $request->filterNumBedrooms);
         }
     
         // Filter by outdoor features
-        if (!is_null($request['filterOutdoor_features'])) {
-            $outdoorFeatures = $request['filterOutdoor_features'];
+        if ($request->filterOutdoor_features) {
+            $outdoorFeatures = $request->filterOutdoor_features;
             $query->whereHas('outdoorfeature', function ($q) use ($outdoorFeatures) {
                 $q->whereIn('outdoorfeature_id', $outdoorFeatures);
             });
         }
     
         $posts = $query->get();
+        // dd($posts);
+
         $types = Type::all();
         $outdoorFeatures = Outdoorfeature::all();
-
         return view('Home.product', compact('posts','types','outdoorFeatures'));
 
     }
