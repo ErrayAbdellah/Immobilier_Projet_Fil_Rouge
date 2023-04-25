@@ -1,7 +1,7 @@
-<aside id="filtrePr" class="fixed mt-16 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+<aside id="filtrePr" class="fixed pb-8 mt-16 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
     {{-- <div > --}}
        
-        <form action="{{ route('filterPost')}}" method="POST" class="h-full px-3 py-4 overflow-y-auto bg-gray-200 ">
+        <form action="{{ route('filterPost')}}" method="POST" class="h-full px-3 py-4 overflow-y-auto bg-gray-200 pb-16">
             @csrF
             <!-- Filter by Property Type -->
             <div class="bg-white shadow-md rounded-md p-4 my-1">

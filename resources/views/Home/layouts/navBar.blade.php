@@ -111,7 +111,7 @@
     </ul> --}}
       <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
         <li>
-          <a href="{{route('home')}}" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('home')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0 " aria-current="page">Home</a>
+          <a href="{{route('home')}}" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('/')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0 " aria-current="page">Home</a>
         </li>
         <li>
           <a href="{{route('product')}}" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('product')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0">Product</a>
