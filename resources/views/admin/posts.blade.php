@@ -44,7 +44,9 @@
 								</form>
 							</td>
 							<td>
-								<form action="" method="POST">
+								{{-- <form action="" method="POST"> --}}
+								<form action="{{ route('postReport',['id'=>$post->id,'id_cost'=>$post->user]) }}" method="POST">
+
 									@csrf
 									<input type="submit" class="bg-blue-500 rounded-xl text-white p-2 hover:bg-blue-600" value="Pass">
 								</form>

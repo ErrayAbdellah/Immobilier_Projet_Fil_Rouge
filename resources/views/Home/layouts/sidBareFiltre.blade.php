@@ -37,4 +37,16 @@
         </form>
 
     {{-- </div> --}}
+    <script>
+         $('#post_type').on('change', function() {
+            var value = $(this).val();
+            if(value == 4){
+                $("#Bedrooms").hide();
+                $("#outdoorFeatures").hide();
+            }else{
+                $("#Bedrooms").show();
+                $("#outdoorFeatures").show();
+            }
+        });
+    </script>
  </aside>

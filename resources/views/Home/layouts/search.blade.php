@@ -31,7 +31,7 @@
       >
         <li class="flex-auto text-center">
           <button
-            class="text-slate-700 mb-0 flex w-full cursor-pointer items-center justify-center rounded-lg border-0 bg-inherit px-0 py-1 transition-all ease-in-out"
+            class="text-slate-700 mb-0 flex hover:bg-blue-200 w-full cursor-pointer items-center justify-center rounded-lg border-0 bg-inherit px-0 py-1 transition-all ease-in-out"
             data-tab-target=""
             active=""
             role="tab"
@@ -48,7 +48,7 @@
         </li>
         <li class="flex-auto text-center">
           <button
-            class="text-slate-700 mb-0 flex w-full cursor-pointer items-center justify-center rounded-lg border-0 bg-inherit px-0 py-1 transition-all ease-in-out"
+            class="text-slate-700 mb-0 flex  hover:bg-blue-200 w-full cursor-pointer items-center justify-center rounded-lg border-0 bg-inherit px-0 py-1 transition-all ease-in-out"
             data-tab-target=""
             role="tab"
             aria-selected="false"

@@ -130,7 +130,7 @@
                 <div class=" flex justify-center flex-wrap ">
                     <div class="scrollComement">
                         <h1 class="my-5 text-2xl p-5 ">Review</h1>
-                        <div class="h-auto overflow-scroll h-[50rem] ">
+                        <div class="h-auto overflow-scroll h-[50rem]">
                             @foreach ($comments as $comment) 
                                 @foreach ($users as $user)
                                     @if ($comment->user_id == $user->id)
