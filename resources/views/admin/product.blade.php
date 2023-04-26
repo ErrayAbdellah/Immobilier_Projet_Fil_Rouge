@@ -13,7 +13,7 @@
 
 		<!--Title-->
 		<h1 class="flex items-center font-sans font-bold break-normal text-indigo-500 px-2 py-8 text-xl md:text-2xl">
-			Report
+			posts
 		</h1>
 
 		<!--Card-->
@@ -27,7 +27,6 @@
 						<th data-priority="2">Costumer</th>
 						<th data-priority="3">post</th>
 						<th data-priority="4"></th>
-						<th data-priority="5"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -41,14 +40,6 @@
 									@csrf
 									@method('DELETE')
 									<input type="submit" class="bg-red-500 rounded-xl text-white p-2 hover:bg-red-600" value="Delete">
-								</form>
-							</td>
-							<td>
-								{{-- <form action="" method="POST"> --}}
-								<form action="{{ route('postReport',['id'=>$post->id,'id_cost'=>$post->user]) }}" method="POST">
-
-									@csrf
-									<input type="submit" class="bg-blue-500 rounded-xl text-white p-2 hover:bg-blue-600" value="Pass">
 								</form>
 							</td>
 						</tr>
@@ -74,8 +65,8 @@
 
 	<!--Datatables -->
 	{{-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script> --}}
-	<script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>--}}
+	<script> 
 		$(document).ready(function() {
 
 			var table = $('#dataTabelA').DataTable({

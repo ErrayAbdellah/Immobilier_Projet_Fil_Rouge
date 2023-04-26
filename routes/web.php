@@ -47,6 +47,7 @@ Route::group([
     Route::post('/users/changeRole',[AdminController::class ,'changeRole'])->name('changeRole');
     Route::get('/dashboard', function () { return view('admin.dashboard'); })->name('dashboard');
     Route::get('/posts',[AdminController::class ,'postsShow'])->name('posts');
+    Route::get('/productAdmin',[AdminController::class ,'productAdmin'])->name('productAdmin');
     
 });
 

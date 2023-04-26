@@ -37,4 +37,10 @@ class AdminController extends Controller
         $posts = Post::with('user')->where('report','=','1')->get();
        return view('admin.posts',compact('posts'));
     }
+    public function productAdmin(){
+        
+        $posts = Post::with('user')->get();
+        return view('admin.product',compact('posts'));
+        // return view('admin.product');
+    }
 }
