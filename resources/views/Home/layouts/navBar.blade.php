@@ -120,7 +120,7 @@
           <a href="#" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('#')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0">About</a>
         </li>
         <li>
-          <a href="pages/contactUs.html" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Contact</a>
+          <a href="{{ route('contactUs') }}" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('contactUs')) ? 'text-blue-700 bg-blue-700 text-white' : '' }}  md:p-0 ">Contact</a>
         </li>
        @if (Auth::user())
           @if (Auth::user()->role_id == 2)

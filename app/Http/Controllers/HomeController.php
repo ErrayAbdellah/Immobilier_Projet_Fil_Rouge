@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\DemoMail;
 use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Outdoorfeature;
@@ -9,6 +10,7 @@ use App\Models\Post;
 use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -72,7 +74,7 @@ class HomeController extends Controller
 
     }
 
-    static public function createBuypage(Request $request, $id){
+    public function createBuypage(Request $request, $id){
 
         $post = Post::with('type','outdoorfeature','user')->where('id','=',$id)->get()->first();
         
@@ -82,5 +84,16 @@ class HomeController extends Controller
         
         $outdoorFeatures = Outdoorfeature::all();
         return view('Home.buy-page',compact('post','images','outdoorFeatures','comments','users'));
+    }
+
+    public function messageSend(Request $request){
+        $mailData = [
+            'title' => 'Mail from '.$request->email,
+            'body' => $request->message
+        ];
+         
+        Mail::to('your_email@gmail.com')->send(new DemoMail($mailData));
+           
+        return back()->with(['success'=> 'Email is sent successfully.']);
     }
 }

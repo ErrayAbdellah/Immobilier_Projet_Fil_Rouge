@@ -62,16 +62,20 @@ Route::group([
     Route::resource('post',PostController::class);
     Route::resource('comment',CommentController::class);
 });
+Route::post('/messageSend',[HomeController::class,'messageSend'])->name('messageSend');
 Route::get('/product',[HomeController::class,'product'])->name('product');
 Route::post('/filterPost',[HomeController::class,'filterPost'])->name('filterPost');
 Route::get('/buypage/{id}',[HomeController::class,'createBuypage'])->name('buyPage');
 
 
 Route::get('/reply', [ReplyController::class,'index']);
+
 Route::get('/myStor', function(){
     return view('Home.MyStor');
 });
-
+Route::get('/contactUs', function(){
+    return view('Home.contact');
+})->name('contactUs');
 
 
 
