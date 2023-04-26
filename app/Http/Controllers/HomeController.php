@@ -96,4 +96,13 @@ class HomeController extends Controller
            
         return back()->with(['success'=> 'Email is sent successfully.']);
     }
+
+    public function myProfile($id){
+        
+        $user = User::with('posts')->find($id);
+        $commentCount = Comment::with('user')->count();
+        $postsCount = Post::with('post')->count();
+        
+        return view('Home.myProfile',compact('user','commentCount','postsCount'));
+    }
 }

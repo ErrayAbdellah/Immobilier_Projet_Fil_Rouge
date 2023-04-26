@@ -71,9 +71,7 @@ Route::get('/buypage/{id}',[HomeController::class,'createBuypage'])->name('buyPa
 
 Route::get('/reply', [ReplyController::class,'index']);
 
-Route::get('/myStor', function(){
-    return view('Home.MyStor');
-});
+Route::get('/myProfile/{id}',[HomeController::class,'myProfile'])->name('myProfile');
 Route::get('/contactUs', function(){
     return view('Home.contact');
 })->name('contactUs');
