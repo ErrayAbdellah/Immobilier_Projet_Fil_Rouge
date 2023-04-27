@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
@@ -99,9 +100,20 @@ class HomeController extends Controller
 
     public function myProfile($id){
         
+        // $breeds = Http::get('https://countriesnow.space/api/v0.1/countries');
+
+        // if ($breeds->ok()) {
+        //     $data = $breeds->json();
+        //     dd($data);
+        //     // Process the data array/object
+        // } else {
+        //    dd("HTTP error: " . $breeds->status());
+        // }
+
+
         $user = User::with('posts')->find($id);
-        $commentCount = Comment::with('user')->count();
-        $postsCount = Post::with('post')->count();
+        $commentCount = Comment::with('user')->where('user_id',$user->id)->count();
+        $postsCount = Post::with('user')->where('user_id',$user->id)->count();
         
         return view('Home.myProfile',compact('user','commentCount','postsCount'));
     }

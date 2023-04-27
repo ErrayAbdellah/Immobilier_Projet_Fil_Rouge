@@ -100,11 +100,7 @@
 @if ($message = Session::get('success'))
 {{-- <x-alert-success/> --}}
 <script>
-    // Swal.fire(
-    //     'Good job!',
-    //     '{{$message}} !',
-    //     'success'
-    //     );
+    
         Swal.fire({
         position: 'top-end',
         icon: 'success',

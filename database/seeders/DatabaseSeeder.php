@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             OutdoorFeatureSeeder::class,
             RoleSeeder::class,
             TypeSeeder::class,
+            RegionSeeder::class,
+            CetiesSeeder::class,
         ]);
 
     }
