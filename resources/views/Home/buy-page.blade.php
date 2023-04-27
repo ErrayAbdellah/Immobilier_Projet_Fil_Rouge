@@ -32,7 +32,7 @@
     </style>
 
     <div class="pt-24 flex justify-center w-screen bg-slate-100">
-        {{-- @dd($post->user->profile_photo_path); --}}
+        
         <div>
             {{-- images --}}
             <div class="mr-auto ml-auto sm:mb-8 col-start-2 col-span-4 w-3/4 md:w-2/5 h-80">                    
@@ -41,11 +41,11 @@
                     <div class="relative h-80 overflow-hidden rounded-lg">
                         <div class=" h-62 w-full mb-3">
                             @foreach($images as $image)
-                                    <div class="hidden duration-700 " data-carousel-item> 
-                                        <img src="{{ asset('image_post/'.$image->filename) }}" alt="Just a flower" class=" w-full object-fill  rounded-2xl">
-                                    </div>
-                                @endforeach
-                            </div>
+                                <div class="hidden duration-700 " data-carousel-item> 
+                                    <img src="{{ asset('image_post/'.$image->filename) }}" alt="Just a flower" class=" w-full object-fill  rounded-2xl">
+                                </div>
+                            @endforeach
+                        </div>
                         <!-- ***************************** -->
                     </div>
                     <!-- Slider controls -->
@@ -66,8 +66,6 @@
             
 
             <div class="sm:grid sm:grid-cols-3 sm:gap-4 w-screen flex flex-wrap">
-                {{-- <div class="flex flex-col md:flex-row md:items-center "> --}}
-            
             
             
                 {{-- home --}}
@@ -77,10 +75,22 @@
                     <p class="text-gray-500">{{$post->description}}</p>
                     <p class="text-lg font-semibold text-gray-700 mb-4">{{$post->price}} MAD</p>
 
-                    <form action="{{ route('postReport',['id'=>$post->id,'id_cost'=>Auth::user()->id]) }}" method="POST">
-                        @csrf
-                        <input type="submit"  class="bg-red-600 text-white rounded-xl p-2 hover:bg-red-700" value="Report"/>
-                    </form>
+                   <div class="flex space-x-4 items-center flex-wrap">
+                        <form action="{{ route('postReport',['id'=>$post->id,'id_cost'=>Auth::user()->id]) }}" method="POST">
+                            @csrf
+                            <input type="submit"  class="bg-red-600 text-white rounded-xl p-2 hover:bg-red-700" value="Report"/>
+                        </form>
+                        @if (Auth::user()->id == $post->user_id)
+                            <div>
+                                <a href="{{route('post.edit',$post->id)}}"class="bg-blue-600 text-white rounded-xl p-2 hover:bg-blue-700" >Edit</a>
+                            </div>
+                            <form action="{{ route('post.destroy', $post->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit"  class="bg-red-600 text-white rounded-xl p-2 hover:bg-red-700" value="Delete"/>
+                            </form>
+                        @endif
+                   </div>
                 </div>
             
                 {{-- User of post --}}
@@ -89,11 +99,14 @@
                     <h5 class="mb-1 text-xl font-medium text-gray-900">{{ $post->user->name }}</h5>
                     <P class="text-sm text-gray-500">{{ $post->user->email }}</P>
                     <P class="text-sm text-gray-500">{{ $post->user->phone }}</P>
+                    <a href="{{ route('myProfile',$post->user->id) }}" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-200 ">
+                        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                            Show profile
+                        </span>
+                    </a>
                 </div>
                 {{-- </div> --}}
             
-            
-                {{-- <div class="flex justify-around flex-wrap "> --}}
 
                     
 
@@ -159,12 +172,12 @@
                                                         </svg>
                                                     </button>
                                                 </form>
-                                                {{-- <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                                                {{-- <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg text-sm p-1.5" type="button">
                                                     <span class="sr-only">Open dropdown</span>
                                                     <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
                                                 </button> --}}
                                                 <!-- Dropdown menu -->
-                                                {{-- <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                                {{-- <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                                                     <h1>{{ $comment->id }}</h1>
                                                     <ul class="py-2" aria-labelledby="dropdownButton">
                                                         <li>
