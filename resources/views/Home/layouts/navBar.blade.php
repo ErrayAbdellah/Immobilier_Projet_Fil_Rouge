@@ -117,7 +117,7 @@
           <a href="{{route('product')}}" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('product')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0">Product</a>
         </li>
         <li>
-          <a href="#" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('#')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0">About</a>
+          {{-- <a href="#" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('#')) ? 'text-blue-700 bg-blue-700 text-white' : '' }} md:p-0">About</a> --}}
         </li>
         <li>
           <a href="{{ route('contactUs') }}" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:{{ (request()->is('contactUs')) ? 'text-blue-700 bg-blue-700 text-white' : '' }}  md:p-0 ">Contact</a>

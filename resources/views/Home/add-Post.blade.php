@@ -8,11 +8,11 @@
         
         <div class="flex sm:justify-around flex-wrap">
             <div class="flex items-center pl-4 border border-gray-200 rounded">
-                <input checked id="buyRent-1" type="radio" value="1" name="buyRent" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <input checked id="buyRent-1" type="radio" value="1" name="buyRent" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" required>
                 <label for="buyRent-1" class="p-4 ml-2 text-sm font-medium text-gray-900">Sell</label>
             </div>
             <div class="flex items-center pl-4 border border-gray-200 rounded">
-                <input id="buyRent-2" type="radio" value="2" name="buyRent" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <input id="buyRent-2" type="radio" value="2" name="buyRent" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" required>
                 <label for="buyRent-2" class="p-4 ml-2 text-sm font-medium text-gray-900">Rent</label>
             </div>
         </div>
@@ -20,27 +20,27 @@
         <div class="flex sm:justify-around flex-wrap"> 
             <div>
                 <label for="title" class="block mb-2 text-sm font-medium text-gray-900">title </label>
-                <input type="text" name="title" class="block w-64 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 ">
+                <input type="text" name="title" class="block w-64 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 " required>
             </div>
             <div>
                 <label for="price" class="block mb-2 text-sm font-medium text-gray-900">price</label>
-                <input type="number" name="price" class="block w-64 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 ">
+                <input type="number" name="price" class="block w-64 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 " required>
             </div>
         </div>
         <div class="flex sm:justify-around flex-wrap ">
             <div>
                 <label for="Bedrooms" class="block mb-2 text-sm font-medium text-gray-900">Bedrooms</label>
-                <input type="number" name="Bedrooms" class="block w-64 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 ">
+                <input type="number" name="Bedrooms" class="block w-64 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 " required>
             </div>
             <div>
                 <label for="space" class="block mb-2 text-sm font-medium text-gray-900">space</label>
-                <input type="number" name="space" class="block w-64 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 ">
+                <input type="number" name="space" class="block w-64 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 " required>
             </div>
         </div>
         <div class="flex sm:justify-around flex-wrap ">
             <div class="">
                 <label for="post_type" class="block mb-2 text-sm font-medium text-gray-900">Small select</label>
-                <select name="post_type" id="post_type" class="block w-64 p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 ">
+                <select name="post_type" id="post_type" class="block w-64 p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " required>
                 <option selected>Choose a type</option>
                 @foreach($types as $type)
                 <option value="{{ $type->id }}">{{ $type->name }}</option>
@@ -49,7 +49,7 @@
             </div>
             {{-- <div class="">
                 <label for="post_type" class="block mb-2 text-sm font-medium text-gray-900">Small select</label>
-                <select name="post_type" id="post_type" class="block w-64 p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 ">
+                <select name="post_type" id="post_type" class="block w-64 p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " required>
                 <option selected>Choose a type</option>
                 @foreach($types as $type)
                 <option value="{{ $type->id }}">{{ $type->name }}</option>
@@ -58,12 +58,12 @@
             </div> --}} 
             <div>
                 <label for="adresse" class="block mb-2 text-sm font-medium text-gray-900">adresse</label>
-                <input type="text" name="adresse" class="block w-64 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 ">
+                <input type="text" name="adresse" class="block w-64 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 " required>
             </div>
         </div>
         
         <div class="sm:ml-16">
-            <textarea name="description" id="description" cols="30" rows="10" style="width:100%" class="block p-2.5 w-64 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Write your thoughts here..."></textarea>
+            <textarea name="description" id="description" cols="30" rows="10" style="width:100%" class="block p-2.5 w-64 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Write your thoughts here..."></textarea required>
         </div>
         <div class="sm:ml-16">
             <label for="type" class="label">chose </label><br>
@@ -71,7 +71,7 @@
                 <li class="">
                     <div class="pl-3 space-y-4 my-4">
                         @foreach($outdoorFeatures as $outdoorFeature)
-                            <input type="checkbox" name="outdoor_features[]" value="{{ $outdoorFeature->id }}" id="outdoor_feature_{{ $outdoorFeature->id }}" class="w-4 mt-2 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 border-2">
+                            <input type="checkbox" name="outdoor_features[]" value="{{ $outdoorFeature->id }}" id="outdoor_feature_{{ $outdoorFeature->id }}" class="w-4 mt-2 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 border-2" >
                             <label for="outdoor_feature_{{ $outdoorFeature->id }}" class=" py-3 ml-2 mb-5 text-sm font-medium text-gray-900">{{ $outdoorFeature->name }} </label><br>
                         @endforeach
                     </div>

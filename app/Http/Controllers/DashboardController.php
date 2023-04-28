@@ -26,25 +26,26 @@ class DashboardController extends Controller
 
         // count users
         $users = DB::select(
-            "SELECT count(*) from users"
+            "SELECT count(*) as 'users' from users"
         );
         
-        // count users post
+        // count rank users post
         $rankUserPost = DB::select(
-            "SELECT COUNT(p.user_id) AS post_count, u.id
+            "SELECT COUNT(p.id) AS post_count, u.id, u.name , u.email ,u.profile_photo_path
             FROM users u
             INNER JOIN posts p ON u.id = p.user_id
-            GROUP BY u.id  
-            HAVING COUNT(p.user_id) > 0 
+            GROUP BY u.id, u.name , u.email ,u.profile_photo_path
+            HAVING COUNT(p.id) > 0 
             ORDER by post_count DESC LIMIT 3"
         );
 
-        //
+        // count user post
         $userPost = DB::select(
             "SELECT  COUNT(DISTINCT  u.id) as userPost from users u INNER join posts p on u.id = p.user_id
              WHERE p.user_id = u.id "
         );
-
-        dd($userPost);
+        // dd('hih');
+        // dd($rankUserPost);
+        return view('admin.dashboard',compact('posts','postsBuy','postsRent','users','rankUserPost','userPost'));
     }
 }

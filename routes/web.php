@@ -29,9 +29,7 @@ Route::middleware([
     'verified',
     'middleware'=>'isAdmin'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    });
+    Route::get('/dashboard',[DashboardController::class, 'index'] );
 });
 
 
@@ -46,7 +44,7 @@ Route::group([
     // Route::get('/postsShow',[AdminController::class ,'postsShow'])->name('postsShow');
     Route::get('/users',[AdminController::class ,'usersShow'])->name('users');
     Route::post('/users/changeRole',[AdminController::class ,'changeRole'])->name('changeRole');
-    Route::get('/dashboard', function () { return view('admin.dashboard'); })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/posts',[AdminController::class ,'postsShow'])->name('posts');
     Route::get('/productAdmin',[AdminController::class ,'productAdmin'])->name('productAdmin');
     
@@ -55,19 +53,21 @@ Route::group([
 Route::get('/',[HomeController::class,'index'])->name('home');
 
 Route::group([
+    'auth:sanctum',
     config('jetstream.auth_session'),
     // 'middleware'=>'isCustomer'
-    'middleware'=>['auth']
+    // 'middleware'=>['']
 ],function(){
     Route::post('post/destroyImage',[PostController::class,'destroyImage']);
     Route::post('/postReport/{id}',[PostController::class,'postReport'])->name('postReport');
     Route::resource('post',PostController::class);
     Route::resource('comment',CommentController::class);
 });
-Route::post('/messageSend',[HomeController::class,'messageSend'])->name('messageSend');
-Route::get('/product',[HomeController::class,'product'])->name('product');
-Route::post('/filterPost',[HomeController::class,'filterPost'])->name('filterPost');
-Route::get('/buypage/{id}',[HomeController::class,'createBuypage'])->name('buyPage');
+
+Route::post('/messageSend', [HomeController::class,'messageSend'])->name('messageSend');
+Route::get('/product',      [HomeController::class,'product'])->name('product');
+Route::post('/filterPost',  [HomeController::class,'filterPost'])->name('filterPost');
+Route::get('/buypage/{id}', [HomeController::class,'createBuypage'])->name('buyPage');
 
 
 Route::get('/reply', [ReplyController::class,'index']);

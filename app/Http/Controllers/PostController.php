@@ -99,8 +99,8 @@ class PostController extends Controller
                 }
             return redirect()->back()->with('success', 'Post created successfully!');
         }catch(Exception $e){
-            dd($e->getMessage());
-            return back()->withError('Failed to upload images.')->withInput();
+            // dd($e->getMessage());
+            return back()->withError($e->getMessage())->withInput();
         }
         
     }
@@ -129,8 +129,6 @@ class PostController extends Controller
         $images = Image::get()->where('post_id','=',$post->id);
         // dd($images);
         if (!$post) {
-            // return response()->json(['error' => 'Post not found'], 404); 
-
             return redirect()->back()->with('error', 'Post not found'); 
         }
         $types = Type::all(); 
