@@ -3,7 +3,7 @@
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
               <a href="#" class="flex items-center">
-                <h1 class="mb-4 text-2xl font-extrabold text-gray-600 md:text-4xl lg:text-5xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Reale</span> State.</h1>
+                <h1 class="mb-4 text-2xl font-extrabold text-gray-50 md:text-4xl lg:text-5xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Reale</span> State.</h1>
               </a>
           </div>
           <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -11,7 +11,7 @@
                   <h2 class="mb-6 text-sm font-semibold text-gray-600 uppercase ">Resources</h2>
                   <ul class="text-gray-600  font-medium">
                       <li class="mb-4">
-                          <a href="#" class="hover:underline">Flowbite</a>
+                          <a href="https://github.com/ErrayAbdellah/Immobilier_Projet_Fil_Rouge" class="hover:underline">Github</a>
                           
                       </li>
                       <li>
@@ -23,10 +23,10 @@
                   <h2 class="mb-6 text-sm font-semibold text-gray-600 uppercase ">Follow us</h2>
                   <ul class="text-gray-600  font-medium">
                       <li class="mb-4">
-                          <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
+                          <a href="https://github.com/ErrayAbdellah/Immobilier_Projet_Fil_Rouge" class="hover:underline ">Github</a>
                       </li>
                       <li>
-                          <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+                          <a href="https://discord.gg/rarau" class="hover:underline">Discord</a>
                       </li>
                   </ul>
               </div>

@@ -54,9 +54,6 @@
 </div>
   @include('Home.layouts.search') 
 
-
-
-<!-- <main class="felx justify-around w-100"> -->
 <main class="flex justify-around flex-wrap h-100 mt-7 mb-24 ">
     <section class="w-72 rounded-lg h-96 bg-gray-400 mt-4">
         <div class="rotate-0 hover:rotate-3 w-72 rounded-lg h-96 transition-all bg-gray-100  p-6">
@@ -65,15 +62,15 @@
               </div>
               
               <!-- year.month.day -->
-              <header class="text-center text-xl font-extrabold text-gray-600">
+              {{-- <header class="text-center text-xl font-extrabold text-gray-600">
                 2021.09.01
-              </header>
+              </header> --}}
               
               <img src="{{ URL::asset('images/home/Artboard 1.png') }}" class="mt-3" alt="" width="80%">
               
               <footer class="mb-10 mt-10 flex justify-center">
                 <button 
-                
+                  onclick="window.location.href='{{route('product')}}';"
                   class="flex items-center rounded-lg bg-blue-700 px-4 py-2.5 text-xl font-bold text-white hover:bg-blue-600"
                 >
                   <p>Buy</p>
@@ -100,14 +97,15 @@
           </div>
           
           <!-- year.month.day -->
-          <header class="text-center text-xl font-extrabold text-gray-600">
+          {{-- <header class="text-center text-xl font-extrabold text-gray-600">
             2021.09.01
-          </header>
+          </header> --}}
           
           <img src="{{ URL::asset('images/home/Artboard 14.png') }}" class="mt-6" alt="" width="90%">
           
           <footer class="mb-10 mt-20 flex justify-center">
             <button
+              onclick="window.location.href='{{route('product')}}';"
               class="flex items-center rounded-lg bg-blue-700 px-4 py-2.5 text-xl font-bold text-white hover:bg-blue-600"
             >
               <p>Rent</p>
@@ -134,9 +132,9 @@
           </div>
           
           <!-- year.month.day -->
-          <header class="text-center text-xl font-extrabold text-gray-600">
+          {{-- <header class="text-center text-xl font-extrabold text-gray-600">
             2021.09.01
-          </header>
+          </header> --}}
           
           <img src="{{ URL::asset('images/home/ArtboardSell.png') }}" alt="" width="80%">
           
@@ -175,13 +173,10 @@
       </button>
     </div>
     <div class="h-auto rounded-md flex space-x-2 overflow-x-auto p-6 mx-2">
-      {{-- @for ($i = 0 ; $i < 4 ; $i ++) --}}
-        
-      {{-- @endfor --}}
         @foreach($posts as $post)
         @php 
           $count = $loop->index + 1;
-          // $count < 5 ? $loop->index + 1 : break ;
+          
             if ($count >= 5) {
                 break;
             }
@@ -200,9 +195,6 @@
               <div class="flex-auto justify-evenly">
                 <div class="flex flex-wrap ">
                   <div class="w-full flex-none mt-12 text-sm flex items-center text-gray-600">
-                    {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg> --}}
                     <span class="text-gray-400 whitespace-nowrap mr-3">4.60</span><span class="mr-2 text-gray-400">India</span>
                   </div>
                   <div class="flex items-center justify-between w-80 ">
